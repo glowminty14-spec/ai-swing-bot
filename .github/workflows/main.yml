@@ -1,0 +1,38 @@
+name: Daily Swing Scanner
+
+on:
+  schedule:
+    # Runs at 3:25 PM IST (09:55 UTC)
+    - cron: '55 9 * * 1-5'
+  workflow_dispatch: # Allows manual click
+
+permissions:
+  contents: write
+
+jobs:
+  run-scanner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          
+      - name: Install Libraries
+        run: pip install -r requirements.txt
+        
+      - name: Run Bot
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python swing_pro.py
+        
+      - name: Save Memory
+        run: |
+          git config --global user.name "Bot"
+          git config --global user.email "bot@github.com"
+          git add alert_history.json || true
+          git commit -m "Update history" || true
+          git push || true
