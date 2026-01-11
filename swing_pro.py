@@ -12,6 +12,7 @@ TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
 if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+    print("Missing Telegram credentials")
     sys.exit(1)
 
 HISTORY_FILE = "alert_history.json"
@@ -79,24 +80,27 @@ STOCKS = {
 def load_history():
     if not os.path.exists(HISTORY_FILE):
         return {}
-    with open(HISTORY_FILE, "r") as f:
-        return json.load(f)
+    try:
+        with open(HISTORY_FILE, "r") as f:
+            return json.load(f)
+    except:
+        return {}
 
-def save_history(h):
+def save_history(history):
     with open(HISTORY_FILE, "w") as f:
-        json.dump(h, f)
+        json.dump(history, f)
 
 def is_duplicate(ticker):
-    h = load_history()
-    if ticker in h:
-        last = datetime.datetime.strptime(h[ticker], "%Y-%m-%d").date()
+    history = load_history()
+    if ticker in history:
+        last = datetime.datetime.strptime(history[ticker], "%Y-%m-%d").date()
         return (datetime.date.today() - last).days < 5
     return False
 
 def update_history(ticker):
-    h = load_history()
-    h[ticker] = datetime.date.today().strftime("%Y-%m-%d")
-    save_history(h)
+    history = load_history()
+    history[ticker] = datetime.date.today().strftime("%Y-%m-%d")
+    save_history(history)
 
 # ================= TELEGRAM =================
 def send_telegram(msg):
@@ -104,16 +108,25 @@ def send_telegram(msg):
     payload = {"chat_id": TELEGRAM_CHAT_ID, "text": msg, "parse_mode": "Markdown"}
     requests.post(url, json=payload, timeout=10)
 
-# ================= MARKET FILTER =================
+# ================= MARKET FILTER (FIXED) =================
 def is_market_bullish():
     nifty = yf.download("^NSEI", period="1y", progress=False)
-    nifty["EMA50"] = ta.ema(nifty["Close"], 50)
-    nifty["RSI"] = ta.rsi(nifty["Close"], 14)
 
-    return (
-        nifty["Close"].iloc[-1] > nifty["EMA50"].iloc[-1] and
-        nifty["RSI"].iloc[-1] > 40
-    )
+    if nifty.empty or len(nifty) < 60:
+        return False
+
+    nifty["EMA50"] = ta.ema(nifty["Close"], length=50)
+    nifty["RSI"] = ta.rsi(nifty["Close"], length=14)
+
+    nifty = nifty.dropna()
+    if nifty.empty:
+        return False
+
+    last_close = float(nifty["Close"].iloc[-1])
+    last_ema50 = float(nifty["EMA50"].iloc[-1])
+    last_rsi = float(nifty["RSI"].iloc[-1])
+
+    return (last_close > last_ema50) and (last_rsi > 40)
 
 # ================= ANALYSIS =================
 def analyze_stock(ticker, sector, nifty_close):
@@ -127,15 +140,18 @@ def analyze_stock(ticker, sector, nifty_close):
         df["EMA200"] = ta.ema(df["Close"], 200)
         df["RSI"] = ta.rsi(df["Close"], 14)
 
+        df = df.dropna()
+        if len(df) < 200:
+            return None
+
         curr = df.iloc[-1]
-        prev = df.iloc[-2]
         avg_vol = df["Volume"].rolling(20).mean().iloc[-1]
 
-        # --- Trend ---
+        # ---- Trend ----
         if curr["Close"] < curr["EMA200"] or curr["EMA50"] < curr["EMA200"]:
             return None
 
-        # --- Relative Strength vs NIFTY ---
+        # ---- Relative Strength vs NIFTY ----
         stock_ret = curr["Close"] / df["Close"].iloc[-21]
         nifty_ret = nifty_close.iloc[-1] / nifty_close.iloc[-21]
         if stock_ret < nifty_ret:
@@ -155,7 +171,7 @@ def analyze_stock(ticker, sector, nifty_close):
 
         setup = None
 
-        # --- Breakout ---
+        # ---- Breakout ----
         last_10 = df.iloc[-11:-1]
         range_high = last_10["High"].max()
         range_low = last_10["Low"].min()
@@ -166,7 +182,7 @@ def analyze_stock(ticker, sector, nifty_close):
             score += 2
             reasons.append("Tight consolidation breakout")
 
-        # --- Pullback ---
+        # ---- Pullback ----
         elif abs(curr["Close"] - curr["EMA20"]) / curr["Close"] < 0.03 and 45 <= curr["RSI"] <= 60:
             setup = "🧲 Pullback"
             score += 1.5
@@ -175,7 +191,6 @@ def analyze_stock(ticker, sector, nifty_close):
         if not setup or score < MIN_SCORE:
             return None
 
-        # --- Stops ---
         stop_loss = range_low * 0.995 if setup == "🚀 Breakout" else curr["EMA50"]
 
         return {
@@ -190,7 +205,7 @@ def analyze_stock(ticker, sector, nifty_close):
             "reasons": reasons
         }
 
-    except:
+    except Exception as e:
         return None
 
 # ================= RUNNER =================
@@ -198,7 +213,7 @@ def run_scan():
     print("🔍 Running Swing Bot")
 
     if not is_market_bullish():
-        print("❌ Market weak – no trades")
+        print("❌ Market weak – skipping trades")
         return
 
     nifty_close = yf.download("^NSEI", period="1y", progress=False)["Close"]
