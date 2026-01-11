@@ -6,6 +6,7 @@ import datetime
 import json
 import os
 import sys
+import io
 
 # ================= CONFIGURATION =================
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
@@ -17,36 +18,61 @@ if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
 
 HISTORY_FILE = "alert_history.json"
 MAX_ALERTS_PER_DAY = 2
-MIN_SCORE = 7.5  # Higher threshold for better quality
+MIN_SCORE = 7.5
 
-# ================= FULL STOCK UNIVERSE =================
-STOCKS = {
-    "HDFCBANK.NS": "Bank", "ICICIBANK.NS": "Bank", "SBIN.NS": "Bank",
-    "AXISBANK.NS": "Bank", "KOTAKBANK.NS": "Bank", "INDUSINDBK.NS": "Bank",
-    "BAJFINANCE.NS": "Finance", "BAJAJFINSV.NS": "Finance", "PFC.NS": "Finance",
-    "REC.NS": "Finance", "JIOFIN.NS": "Finance", "CHOLAFIN.NS": "Finance",
-    "TCS.NS": "IT", "INFY.NS": "IT", "HCLTECH.NS": "IT", "WIPRO.NS": "IT",
-    "TECHM.NS": "IT", "LTIM.NS": "IT", "KPITTECH.NS": "Tech",
-    "ZOMATO.NS": "Tech", "NAUKRI.NS": "Tech", "PBFINTECH.NS": "Tech",
-    "MARUTI.NS": "Auto", "TATAMOTORS.NS": "Auto", "M&M.NS": "Auto",
-    "BAJAJ-AUTO.NS": "Auto", "EICHERMOT.NS": "Auto", "TVSMOTOR.NS": "Auto",
-    "HEROMOTOCO.NS": "Auto", "TIINDIA.NS": "Auto Ancillary",
-    "BHARATFORG.NS": "Auto Ancillary", "RELIANCE.NS": "Energy",
-    "ONGC.NS": "Energy", "COALINDIA.NS": "Energy", "NTPC.NS": "Power",
-    "POWERGRID.NS": "Power", "TATAPOWER.NS": "Power", "ADANIGREEN.NS": "Power",
-    "ADANIPOWER.NS": "Power", "IOC.NS": "Oil", "BPCL.NS": "Oil",
-    "HAL.NS": "Defense", "BEL.NS": "Defense", "MAZDOCK.NS": "Defense",
-    "COCHINSHIP.NS": "Defense", "BDL.NS": "Defense", "RVNL.NS": "Railways",
-    "IRFC.NS": "Railways", "IRCON.NS": "Railways", "LT.NS": "Infra",
-    "ABB.NS": "Cap Goods", "SIEMENS.NS": "Cap Goods", "CGPOWER.NS": "Cap Goods",
-    "ADANIENT.NS": "Infra", "ITC.NS": "FMCG", "HINDUNILVR.NS": "FMCG",
-    "NESTLEIND.NS": "FMCG", "VBL.NS": "FMCG", "TATACONSUM.NS": "FMCG",
-    "TITAN.NS": "Retail", "TRENT.NS": "Retail", "DMART.NS": "Retail",
-    "SUNPHARMA.NS": "Pharma", "CIPLA.NS": "Pharma", "DRREDDY.NS": "Pharma",
-    "DIVISLAB.NS": "Pharma", "APOLLOHOSP.NS": "Healthcare",
-    "TATASTEEL.NS": "Metals", "JSWSTEEL.NS": "Metals", "HINDALCO.NS": "Metals",
-    "VEDL.NS": "Metals", "DLF.NS": "Realty", "GODREJPROP.NS": "Realty"
-}
+# ================= DYNAMIC STOCK LOADER =================
+def fetch_live_nifty_stocks():
+    """
+    Fetches the latest NIFTY 200 list directly from NSE Archives.
+    Returns a dictionary: {'RELIANCE.NS': 'Oil & Gas', ...}
+    """
+    print("⏳ Downloading latest Nifty 200 list from NSE...")
+    
+    # URL for Nifty 200 (Best balance of high liquidity and momentum)
+    url = "https://nsearchives.nseindia.com/content/indices/ind_nifty200list.csv"
+    
+    # Headers to look like a real browser (Prevents blocking)
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    }
+
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        if response.status_code == 200:
+            # Read CSV data
+            df = pd.read_csv(io.StringIO(response.content.decode('utf-8')))
+            
+            # Create Dictionary: Symbol -> Industry
+            live_stocks = {}
+            for index, row in df.iterrows():
+                symbol = f"{row['Symbol']}.NS"
+                industry = row['Industry'] if 'Industry' in row else "Unknown"
+                live_stocks[symbol] = industry
+            
+            print(f"✅ Successfully loaded {len(live_stocks)} stocks from NSE.")
+            return live_stocks
+        else:
+            print(f"⚠️ NSE Download failed (Status {response.status_code}). Using fallback list.")
+            return get_fallback_list()
+
+    except Exception as e:
+        print(f"⚠️ Error fetching NSE list: {e}. Using fallback list.")
+        return get_fallback_list()
+
+def get_fallback_list():
+    """Hardcoded backup list in case NSE website is down"""
+    return {
+        "HDFCBANK.NS": "Bank", "ICICIBANK.NS": "Bank", "SBIN.NS": "Bank",
+        "RELIANCE.NS": "Energy", "INFY.NS": "IT", "ITC.NS": "FMCG",
+        "L&T.NS": "Infra", "TCS.NS": "IT", "TATAMOTORS.NS": "Auto",
+        "SUNPHARMA.NS": "Pharma", "NTPC.NS": "Power", "M&M.NS": "Auto",
+        "BHARTIARTL.NS": "Telecom", "COALINDIA.NS": "Metals",
+        "BAJFINANCE.NS": "Finance", "ASIANPAINT.NS": "Consumer",
+        "MARUTI.NS": "Auto", "TITAN.NS": "Consumer", "HCLTECH.NS": "IT"
+    }
+
+# LOAD STOCKS (Runs once when script starts)
+STOCKS = fetch_live_nifty_stocks()
 
 # ================= MEMORY SYSTEM =================
 def load_history():
@@ -70,7 +96,7 @@ def update_history(ticker):
     history[ticker] = datetime.date.today().strftime("%Y-%m-%d")
     save_history(history)
 
-# ================= TELEGRAM =================
+# ================= TELEGRAM SENDER =================
 def send_telegram_alert(message):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     payload = {"chat_id": TELEGRAM_CHAT_ID, "text": message, "parse_mode": "Markdown"}
@@ -78,13 +104,13 @@ def send_telegram_alert(message):
         requests.post(url, json=payload, timeout=10)
     except: pass
 
-# ================= ADVANCED ANALYSIS =================
+# ================= ANALYSIS ENGINE =================
 def analyze_stock(ticker, sector, nifty_close):
     try:
-        # Download 2 Years of data (Required for Weekly Analysis)
+        # 1. Download Data (2 Years for Weekly Analysis)
         df = yf.download(ticker, period="2y", progress=False)
         
-        # --- Safety Fix ---
+        # --- Safety Fix for yfinance updates ---
         if df.empty: return None
         if isinstance(df.columns, pd.MultiIndex):
             try:
@@ -95,64 +121,61 @@ def analyze_stock(ticker, sector, nifty_close):
                 temp['Volume'] = df.xs('Volume', level=0, axis=1)[ticker]
                 df = temp
             except: return None
-        # ------------------
+        
+        if len(df) < 300: return None 
+        # ---------------------------------------
 
-        if len(df) < 300: return None # Need enough data for weekly resampling
-
-        # 1️⃣ WEEKLY TIMEFRAME CHECK (The Big Picture)
-        # Resample Daily data to Weekly
+        # 2. WEEKLY TREND CHECK
+        # Resample to Weekly candles
         df_weekly = df.resample('W').agg({'Close': 'last'})
         df_weekly['EMA_50'] = ta.ema(df_weekly['Close'], length=50)
         
-        # Rule: Weekly Price MUST be above Weekly 50 EMA
-        current_weekly_close = df_weekly['Close'].iloc[-1]
-        current_weekly_ema = df_weekly['EMA_50'].iloc[-1]
+        curr_wk_close = df_weekly['Close'].iloc[-1]
+        curr_wk_ema = df_weekly['EMA_50'].iloc[-1]
         
-        if pd.isna(current_weekly_ema) or current_weekly_close < current_weekly_ema:
-            return None # Reject: Long-term trend is bearish
+        # Rule: Weekly Trend must be UP
+        if pd.isna(curr_wk_ema) or curr_wk_close < curr_wk_ema:
+            return None 
 
-        # 2️⃣ DAILY INDICATORS
+        # 3. DAILY INDICATORS
         df['EMA_20'] = ta.ema(df['Close'], length=20)
         df['EMA_50'] = ta.ema(df['Close'], length=50)
         df['EMA_200'] = ta.ema(df['Close'], length=200)
         df['RSI'] = ta.rsi(df['Close'], length=14)
-        
-        # ADX (Trend Strength) - NEW!
-        adx_df = ta.adx(df['High'], df['Low'], df['Close'], length=14)
-        df = pd.concat([df, adx_df], axis=1) # Join ADX columns
-        # Note: pandas_ta names columns like ADX_14, DMP_14, DMN_14
-        
-        # ATR (Volatility) - NEW!
         df['ATR'] = ta.atr(df['High'], df['Low'], df['Close'], length=14)
+        
+        # ADX (Trend Strength)
+        adx_df = ta.adx(df['High'], df['Low'], df['Close'], length=14)
+        df = pd.concat([df, adx_df], axis=1)
 
         df = df.dropna()
         curr = df.iloc[-1]
         avg_vol = df['Volume'].rolling(20).mean().iloc[-1]
 
-        # 3️⃣ BASIC TREND FILTER
+        # 4. FILTERS
+        # Daily Trend
         if curr['Close'] < curr['EMA_200']: return None
         
-        # 4️⃣ ADX FILTER (Avoid Choppy Markets)
-        # We check ADX_14. If < 20, trend is too weak.
-        if curr['ADX_14'] < 20: return None
+        # Chop Filter (ADX > 20)
+        # Handle cases where ADX might be named differently
+        adx_col = 'ADX_14' if 'ADX_14' in df.columns else df.columns[df.columns.str.contains('ADX')][0]
+        if curr[adx_col] < 20: return None
 
-        # 5️⃣ SCORING & LOGIC
+        # 5. SCORING
         score = 5.0
         reasons = []
         setup = None
-
-        # Add score for Weekly Alignment
-        reasons.append("Weekly Trend is Up (Above 50 EMA)")
         
-        # Add score for Strong ADX
-        if curr['ADX_14'] > 25:
+        reasons.append(f"Weekly Trend Bullish")
+
+        # ADX Bonus
+        if curr[adx_col] > 25:
             score += 1.0
-            reasons.append(f"Strong Trend Momentum (ADX: {round(curr['ADX_14'],1)})")
+            reasons.append(f"Strong Momentum (ADX: {round(curr[adx_col],1)})")
 
         # Setup A: Breakout
         last_10 = df.iloc[-11:-1]
         range_high = last_10['High'].max()
-        range_low = last_10['Low'].min()
         
         if curr['Close'] > range_high and curr['Volume'] > (1.5 * avg_vol):
             setup = "🚀 Breakout"
@@ -167,14 +190,14 @@ def analyze_stock(ticker, sector, nifty_close):
 
         if not setup or score < MIN_SCORE: return None
 
-        # 6️⃣ SMART STOP LOSS (ATR BASED)
-        # SL = Price - (2 * ATR)
-        atr_value = curr['ATR']
-        smart_sl = curr['Close'] - (2 * atr_value)
+        # 6. TARGETS & STOPS
+        # ATR Based Stop Loss
+        atr_val = curr['ATR']
+        stop_loss = curr['Close'] - (2 * atr_val)
         
-        # Ensure SL isn't too far (max 8% risk)
+        # Cap SL at 8% max risk
         max_risk_sl = curr['Close'] * 0.92
-        final_sl = max(smart_sl, max_risk_sl)
+        final_sl = max(stop_loss, max_risk_sl)
 
         return {
             "symbol": ticker.replace('.NS', ''),
@@ -182,7 +205,7 @@ def analyze_stock(ticker, sector, nifty_close):
             "setup": setup,
             "entry": round(curr['Close'], 1),
             "sl": round(final_sl, 1),
-            "t1": round(curr['Close'] + (curr['Close'] - final_sl) * 2, 1), # 1:2 Risk Reward
+            "t1": round(curr['Close'] + (curr['Close'] - final_sl) * 2, 1),
             "t2": round(curr['Close'] * 1.25, 1),
             "score": round(score, 1),
             "reasons": reasons
@@ -193,9 +216,9 @@ def analyze_stock(ticker, sector, nifty_close):
 
 # ================= RUNNER =================
 def run_scan():
-    print("--- 🔍 Starting Pro Max Scan ---")
+    print("--- 🔍 Starting Auto-Fetch Scan ---")
     
-    # Dummy Nifty Fetch (Kept for compatibility, though RS check is optional now)
+    # Dummy Nifty fetch
     try:
         nifty = yf.download("^NSEI", period="1y", progress=False)['Close']
     except:
@@ -203,7 +226,9 @@ def run_scan():
 
     signals = []
     
-    print(f"Scanning {len(STOCKS)} stocks with Weekly + ADX filters...")
+    print(f"Scanning {len(STOCKS)} stocks from NSE List...")
+    
+    # Scan Stocks
     for ticker, sector in STOCKS.items():
         if is_duplicate_alert(ticker): continue
         
@@ -215,14 +240,14 @@ def run_scan():
     signals.sort(key=lambda x: x['score'], reverse=True)
     
     if not signals:
-        print("No setups passed the strict Weekly/ADX filters.")
+        print("No high-quality setups found today.")
         return
 
     print(f"--- Sending {min(len(signals), MAX_ALERTS_PER_DAY)} Alerts ---")
     
     for s in signals[:MAX_ALERTS_PER_DAY]:
         reasoning_text = "\n".join([f"• {r}" for r in s['reasons']])
-        risk_per_share = round(s['entry'] - s['sl'], 1)
+        risk = round(s['entry'] - s['sl'], 1)
         
         msg = f"""
 💎 **PRO SWING ALERT**
@@ -237,8 +262,8 @@ def run_scan():
 
 📍 **Entry:** {s['entry']}
 ⛔ **Stop Loss:** {s['sl']} (ATR Based)
-🎯 **Target 1:** {s['t1']} (1:2 Risk/Reward)
-⚠️ **Risk Per Share:** ₹{risk_per_share}
+🎯 **Target:** {s['t1']} (1:2 Risk)
+⚠️ **Risk:** ₹{risk} / share
 
 _Auto-Analysis by SwingBot_
         """
