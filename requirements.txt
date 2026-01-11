@@ -1,7 +1,5 @@
-setuptools
-wheel
 numpy<2.0.0
 pandas
 yfinance
 requests
-pandas-ta @ https://github.com/twopirllc/pandas-ta/archive/refs/heads/development.zip
+pandas-ta-openbb
