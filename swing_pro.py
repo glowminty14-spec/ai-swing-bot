@@ -7,7 +7,7 @@ import json
 import os
 import sys
 
-# --- CONFIGURATION ---
+# ================= CONFIG =================
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
@@ -16,177 +16,225 @@ if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
 
 HISTORY_FILE = "alert_history.json"
 MAX_ALERTS_PER_DAY = 2
+MIN_SCORE = 7.5
 
-# STOCK UNIVERSE with SECTOR MAPPING (For "Deep Analysis")
-# You can add more stocks here.
 STOCKS = {
-    "RELIANCE.NS": "Energy", "TRENT.NS": "Retail", "HAL.NS": "Defense", 
-    "BEL.NS": "Defense", "TATAMOTORS.NS": "Auto", "KPITTECH.NS": "Tech",
-    "ZOMATO.NS": "Tech", "VBL.NS": "FMCG", "ABB.NS": "Capital Goods", 
-    "SIEMENS.NS": "Capital Goods", "ADANIENT.NS": "Metals/Mining", 
-    "COALINDIA.NS": "Energy", "NTPC.NS": "Energy", "SBIN.NS": "Bank", 
-    "ITC.NS": "FMCG", "BAJFINANCE.NS": "Finance", "DMART.NS": "Retail", 
-    "SUNPHARMA.NS": "Pharma", "HDFCBANK.NS": "Bank", "INFY.NS": "IT"
+    # --- BANKS & FINANCE ---
+    "HDFCBANK.NS": "Bank", "ICICIBANK.NS": "Bank", "SBIN.NS": "Bank",
+    "AXISBANK.NS": "Bank", "KOTAKBANK.NS": "Bank", "INDUSINDBK.NS": "Bank",
+    "BAJFINANCE.NS": "Finance", "BAJAJFINSV.NS": "Finance",
+    "PFC.NS": "Finance", "REC.NS": "Finance", "JIOFIN.NS": "Finance",
+    "CHOLAFIN.NS": "Finance", "SHRIRAMFIN.NS": "Finance",
+
+    # --- IT & TECH ---
+    "TCS.NS": "IT", "INFY.NS": "IT", "HCLTECH.NS": "IT",
+    "WIPRO.NS": "IT", "TECHM.NS": "IT", "LTIM.NS": "IT",
+    "KPITTECH.NS": "Tech", "PERSISTENT.NS": "Tech", "COFORGE.NS": "Tech",
+    "ZOMATO.NS": "Tech", "NAUKRI.NS": "Tech", "PBFINTECH.NS": "Tech",
+
+    # --- AUTO & AUTO ANCILLARY ---
+    "MARUTI.NS": "Auto", "TATAMOTORS.NS": "Auto", "M&M.NS": "Auto",
+    "BAJAJ-AUTO.NS": "Auto", "EICHERMOT.NS": "Auto", "TVSMOTOR.NS": "Auto",
+    "HEROMOTOCO.NS": "Auto", "TIINDIA.NS": "Auto Ancillary",
+    "BHARATFORG.NS": "Auto Ancillary", "MOTHERSON.NS": "Auto Ancillary",
+
+    # --- ENERGY, OIL & POWER ---
+    "RELIANCE.NS": "Energy", "ONGC.NS": "Energy", "COALINDIA.NS": "Energy",
+    "NTPC.NS": "Power", "POWERGRID.NS": "Power", "TATAPOWER.NS": "Power",
+    "ADANIGREEN.NS": "Power", "ADANIPOWER.NS": "Power", "JSWENERGY.NS": "Power",
+    "IOC.NS": "Oil & Gas", "BPCL.NS": "Oil & Gas",
+
+    # --- DEFENSE, RAIL & PSU ---
+    "HAL.NS": "Defense", "BEL.NS": "Defense", "MAZDOCK.NS": "Defense",
+    "COCHINSHIP.NS": "Defense", "BDL.NS": "Defense",
+    "RVNL.NS": "Railways", "IRFC.NS": "Railways", "IRCON.NS": "Railways",
+    "IRCTC.NS": "Railways",
+
+    # --- CAPITAL GOODS & INFRA ---
+    "LT.NS": "Infra", "ABB.NS": "Cap Goods", "SIEMENS.NS": "Cap Goods",
+    "CGPOWER.NS": "Cap Goods", "CUMMINSIND.NS": "Cap Goods",
+    "ADANIENT.NS": "Infra", "GMRINFRA.NS": "Infra",
+
+    # --- CONSUMER (FMCG, RETAIL) ---
+    "ITC.NS": "FMCG", "HINDUNILVR.NS": "FMCG", "NESTLEIND.NS": "FMCG",
+    "BRITANNIA.NS": "FMCG", "VBL.NS": "FMCG", "TATACONSUM.NS": "FMCG",
+    "TITAN.NS": "Retail", "TRENT.NS": "Retail", "DMART.NS": "Retail",
+    "ABFRL.NS": "Retail", "HAVELLS.NS": "Consumer Durables", "DIXON.NS": "Electronics",
+
+    # --- PHARMA & HEALTHCARE ---
+    "SUNPHARMA.NS": "Pharma", "CIPLA.NS": "Pharma", "DRREDDY.NS": "Pharma",
+    "DIVISLAB.NS": "Pharma", "LUPIN.NS": "Pharma", "AUROPHARMA.NS": "Pharma",
+    "APOLLOHOSP.NS": "Healthcare", "MAXHEALTH.NS": "Healthcare",
+
+    # --- METALS & MINING ---
+    "TATASTEEL.NS": "Metals", "JSWSTEEL.NS": "Metals", "HINDALCO.NS": "Metals",
+    "VEDL.NS": "Metals", "NMDC.NS": "Mining", "JINDALSTEL.NS": "Metals",
+
+    # --- REALTY ---
+    "DLF.NS": "Realty", "GODREJPROP.NS": "Realty", "LODHA.NS": "Realty",
+    "PHOENIXLTD.NS": "Realty"
 }
 
-# --- MEMORY SYSTEM ---
+# ================= MEMORY =================
 def load_history():
-    if not os.path.exists(HISTORY_FILE): return {}
-    try:
-        with open(HISTORY_FILE, 'r') as f: return json.load(f)
-    except: return {}
+    if not os.path.exists(HISTORY_FILE):
+        return {}
+    with open(HISTORY_FILE, "r") as f:
+        return json.load(f)
 
-def save_history(history):
-    with open(HISTORY_FILE, 'w') as f: json.dump(history, f)
+def save_history(h):
+    with open(HISTORY_FILE, "w") as f:
+        json.dump(h, f)
 
-def is_duplicate_alert(ticker):
-    history = load_history()
-    if ticker in history:
-        last_date = datetime.datetime.strptime(history[ticker], "%Y-%m-%d").date()
-        if (datetime.date.today() - last_date).days < 5: return True
+def is_duplicate(ticker):
+    h = load_history()
+    if ticker in h:
+        last = datetime.datetime.strptime(h[ticker], "%Y-%m-%d").date()
+        return (datetime.date.today() - last).days < 5
     return False
 
 def update_history(ticker):
-    history = load_history()
-    history[ticker] = datetime.date.today().strftime("%Y-%m-%d")
-    save_history(history)
+    h = load_history()
+    h[ticker] = datetime.date.today().strftime("%Y-%m-%d")
+    save_history(h)
 
-# --- TELEGRAM SENDER ---
-def send_telegram_alert(message):
+# ================= TELEGRAM =================
+def send_telegram(msg):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    payload = {"chat_id": TELEGRAM_CHAT_ID, "text": message, "parse_mode": "Markdown"}
-    requests.post(url, json=payload)
+    payload = {"chat_id": TELEGRAM_CHAT_ID, "text": msg, "parse_mode": "Markdown"}
+    requests.post(url, json=payload, timeout=10)
 
-# --- ANALYSIS ENGINE ---
-def analyze_stock(ticker, sector):
+# ================= MARKET FILTER =================
+def is_market_bullish():
+    nifty = yf.download("^NSEI", period="1y", progress=False)
+    nifty["EMA50"] = ta.ema(nifty["Close"], 50)
+    nifty["RSI"] = ta.rsi(nifty["Close"], 14)
+
+    return (
+        nifty["Close"].iloc[-1] > nifty["EMA50"].iloc[-1] and
+        nifty["RSI"].iloc[-1] > 40
+    )
+
+# ================= ANALYSIS =================
+def analyze_stock(ticker, sector, nifty_close):
     try:
         df = yf.download(ticker, period="1y", progress=False)
-        if df.empty or len(df) < 200: return None
-        
-        # Data Cleanup
-        if isinstance(df.columns, pd.MultiIndex):
-            df = df.xs('Close', level=0, axis=1)[ticker].to_frame(name='Close')
-            df['Volume'] = yf.download(ticker, period="1y", progress=False)['Volume']
+        if df.empty or len(df) < 200:
+            return None
 
-        # 1. Indicator Calculation
-        df['EMA_20'] = ta.ema(df['Close'], length=20)
-        df['EMA_50'] = ta.ema(df['Close'], length=50)
-        df['EMA_200'] = ta.ema(df['Close'], length=200)
-        df['RSI'] = ta.rsi(df['Close'], length=14)
-        
+        df["EMA20"] = ta.ema(df["Close"], 20)
+        df["EMA50"] = ta.ema(df["Close"], 50)
+        df["EMA200"] = ta.ema(df["Close"], 200)
+        df["RSI"] = ta.rsi(df["Close"], 14)
+
         curr = df.iloc[-1]
         prev = df.iloc[-2]
-        avg_vol = df['Volume'].rolling(20).mean().iloc[-1]
-        
-        # 2. Trend Filter (Must be in Uptrend)
-        if curr['Close'] < curr['EMA_200']: return None
-        if curr['EMA_50'] < curr['EMA_200']: return None
+        avg_vol = df["Volume"].rolling(20).mean().iloc[-1]
 
-        # 3. Setup Detection & Scoring
+        # --- Trend ---
+        if curr["Close"] < curr["EMA200"] or curr["EMA50"] < curr["EMA200"]:
+            return None
+
+        # --- Relative Strength vs NIFTY ---
+        stock_ret = curr["Close"] / df["Close"].iloc[-21]
+        nifty_ret = nifty_close.iloc[-1] / nifty_close.iloc[-21]
+        if stock_ret < nifty_ret:
+            return None
+
+        score = 5.0
+        reasons = []
+
+        vol_x = curr["Volume"] / avg_vol
+        if vol_x > 1.5:
+            score += min(vol_x, 3)
+            reasons.append(f"Volume expansion ({round(vol_x,1)}x)")
+
+        if curr["Close"] > curr["EMA20"]:
+            score += 1
+            reasons.append("Price above 20 EMA")
+
         setup = None
-        score = 5.0 # Start with base score
-        reasons = [] # "AI Reasoning" points
-        
-        # Vol Check
-        vol_multiple = round(curr['Volume'] / avg_vol, 1)
-        if vol_multiple > 1.5:
-            score += 1.5
-            reasons.append(f"Volume surge ({vol_multiple}x average)")
-        
-        # Trend Strength
-        if curr['Close'] > curr['EMA_20']:
-            score += 1.0
-            reasons.append("Price sustaining above 20 EMA")
-        
-        # --- LOGIC: BREAKOUT ---
-        last_10 = df.iloc[-11:-1]
-        range_high = last_10['High'].max() if 'High' in last_10 else last_10['Close'].max()
-        
-        if curr['Close'] > range_high and vol_multiple > 1.3:
-            setup = "Breakout"
-            score += 2.0
-            reasons.append("Breakout from consolidation zone")
-            entry_type = "Momentum"
-            
-        # --- LOGIC: PULLBACK ---
-        elif abs(curr['Close'] - curr['EMA_20']) / curr['Close'] < 0.03 and 45 <= curr['RSI'] <= 60:
-            setup = "Pullback"
-            score += 1.5
-            reasons.append("RSI Reset (45-60) in Uptrend")
-            reasons.append("Respecting 20 EMA Support")
-            entry_type = "Trend Continuation"
-        
-        if not setup: return None
 
-        # 4. Final Data for Alert
-        # Targets
-        entry_price = curr['Close']
-        stop_loss = curr['EMA_20'] * 0.98 # 2% below 20 EMA
-        target_1 = entry_price * 1.10 # 10%
-        target_2 = entry_price * 1.25 # 25%
-        
-        # Cap Score
-        score = min(round(score, 1), 9.8)
-        
+        # --- Breakout ---
+        last_10 = df.iloc[-11:-1]
+        range_high = last_10["High"].max()
+        range_low = last_10["Low"].min()
+        width = (range_high - range_low) / range_low
+
+        if curr["Close"] > range_high and width < 0.08 and curr["RSI"] < 70:
+            setup = "🚀 Breakout"
+            score += 2
+            reasons.append("Tight consolidation breakout")
+
+        # --- Pullback ---
+        elif abs(curr["Close"] - curr["EMA20"]) / curr["Close"] < 0.03 and 45 <= curr["RSI"] <= 60:
+            setup = "🧲 Pullback"
+            score += 1.5
+            reasons.append("RSI reset + EMA20 support")
+
+        if not setup or score < MIN_SCORE:
+            return None
+
+        # --- Stops ---
+        stop_loss = range_low * 0.995 if setup == "🚀 Breakout" else curr["EMA50"]
+
         return {
-            "symbol": ticker.replace('.NS', ''),
+            "symbol": ticker.replace(".NS", ""),
             "sector": sector,
             "setup": setup,
-            "entry": round(entry_price, 1),
-            "entry_zone": f"{round(entry_price * 0.995, 1)} - {round(entry_price * 1.005, 1)}",
+            "entry": round(curr["Close"], 1),
             "sl": round(stop_loss, 1),
-            "t1": round(target_1, 1),
-            "t2": round(target_2, 1),
-            "score": score,
-            "reasons": reasons,
-            "rsi": round(curr['RSI'], 1)
+            "t1": round(curr["Close"] * 1.10, 1),
+            "t2": round(curr["Close"] * 1.25, 1),
+            "score": round(score, 2),
+            "reasons": reasons
         }
 
-    except Exception as e:
+    except:
         return None
 
-# --- ORCHESTRATOR ---
+# ================= RUNNER =================
 def run_scan():
-    print("--- Starting Deep Analysis Scan ---")
+    print("🔍 Running Swing Bot")
+
+    if not is_market_bullish():
+        print("❌ Market weak – no trades")
+        return
+
+    nifty_close = yf.download("^NSEI", period="1y", progress=False)["Close"]
     signals = []
-    
-    # Analyze each stock in the map
+
     for ticker, sector in STOCKS.items():
-        if is_duplicate_alert(ticker): continue
-        
-        data = analyze_stock(ticker, sector)
-        if data:
-            signals.append(data)
-    
-    # Sort by Confidence Score
-    signals.sort(key=lambda x: x['score'], reverse=True)
-    
-    # Send Top 2 Alerts
+        if is_duplicate(ticker):
+            continue
+        s = analyze_stock(ticker, sector, nifty_close)
+        if s:
+            signals.append(s)
+
+    signals.sort(key=lambda x: x["score"], reverse=True)
+
     for s in signals[:MAX_ALERTS_PER_DAY]:
-        # Create Bullet Points for Reasoning
-        reasoning_text = "\n".join([f"• {r}" for r in s['reasons']])
-        
         msg = f"""
-🚀 **SWING TRADE ALERT**
+🚀 *SWING TRADE ALERT*
 
-📌 **Stock:** {s['symbol']}
-🏢 **Sector:** {s['sector']}
-🎯 **Target:** 10–25%
-⏳ **Timeframe:** 7–18 days
-📊 **Confidence Score:** {s['score']} / 10
+📌 *Stock:* {s['symbol']}
+🏢 *Sector:* {s['sector']}
+🛠 *Setup:* {s['setup']}
+📊 *Score:* {s['score']}/10
 
-🧠 **AI Reasoning:**
-{reasoning_text}
-• Trend is Bullish (Above 200 EMA)
+🧠 *Reasoning:*
+""" + "\n".join([f"• {r}" for r in s["reasons"]]) + f"""
 
-📍 **Entry Zone:** {s['entry_zone']}
-⛔ **Stop Loss:** {s['sl']}
+📍 *Entry:* {s['entry']}
+🎯 *Targets:* {s['t1']} / {s['t2']}
+⛔ *Stop Loss:* {s['sl']}
 
-_Auto-Analysis by SwingBot_
-        """
-        send_telegram_alert(msg)
-        update_history(s['symbol'] + ".NS")
-        print(f"Sent Alert: {s['symbol']}")
+_Not financial advice_
+"""
+        send_telegram(msg)
+        update_history(s["symbol"] + ".NS")
+        print(f"✅ Alert sent: {s['symbol']}")
 
+# ================= MAIN =================
 if __name__ == "__main__":
     run_scan()
