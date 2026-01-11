@@ -1,5 +1,7 @@
+setuptools
+wheel
 numpy<2.0.0
-pandas
+pandas==2.1.4
 pandas-ta
 yfinance
 requests
