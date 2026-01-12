@@ -1,0 +1,18 @@
+[
+    {
+        "symbol": "BAJAJ-AUTO",
+        "entry": 9491.0,
+        "target": 10231.9,
+        "sl": 9120.6,
+        "date": "2026-01-12",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "BOSCHLTD",
+        "entry": 37660.0,
+        "target": 41228.7,
+        "sl": 35875.7,
+        "date": "2026-01-12",
+        "status": "OPEN"
+    }
+]
