@@ -30,5 +30,21 @@
         "sl": 1000.5,
         "date": "2026-01-13",
         "status": "OPEN"
+    },
+    {
+        "symbol": "AUBANK",
+        "entry": 972.0,
+        "target": 1051.8,
+        "sl": 932.0,
+        "date": "2026-01-13",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "CANBK",
+        "entry": 150.9,
+        "target": 164.4,
+        "sl": 144.1,
+        "date": "2026-01-13",
+        "status": "OPEN"
     }
 ]
