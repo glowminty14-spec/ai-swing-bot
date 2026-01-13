@@ -21,7 +21,7 @@
         "target": 325.0,
         "sl": 279.3,
         "date": "2026-01-13",
-        "status": "LOSS"
+        "status": "OPEN"
     },
     {
         "symbol": "SBIN",
@@ -29,6 +29,6 @@
         "target": 1084.4,
         "sl": 1000.5,
         "date": "2026-01-13",
-        "status": "LOSS"
+        "status": "OPEN"
     }
 ]
