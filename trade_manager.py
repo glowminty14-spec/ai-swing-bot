@@ -3,6 +3,7 @@ import pandas as pd
 import json
 import os
 import requests
+import datetime
 import sys
 
 # --- CONFIG ---
@@ -18,7 +19,7 @@ def send_telegram(message):
 
 def track_trades():
     print("--- 💼 STARTING TRADE MANAGER ---")
-
+    
     if not os.path.exists(TRADES_FILE):
         print("No trades file found yet.")
         return
@@ -38,10 +39,15 @@ def track_trades():
     for t in active_trades:
         symbol = t['symbol'] + ".NS"
         try:
-            # Download last 5 days to catch recent moves
-            df = yf.download(symbol, period="5d", progress=False)
+            # 1. Parse the Entry Date
+            entry_date_str = t['date']
+            entry_date = datetime.datetime.strptime(entry_date_str, "%Y-%m-%d").date()
 
+            # 2. Download Data
+            df = yf.download(symbol, period="5d", progress=False)
+            
             if df.empty: continue
+            
             # Fix MultiIndex if present
             if isinstance(df.columns, pd.MultiIndex):
                 temp = pd.DataFrame()
@@ -50,8 +56,19 @@ def track_trades():
                 temp['Close'] = df.xs('Close', level=0, axis=1)[symbol]
                 df = temp
 
-            high_price = df['High'].max()
-            low_price = df['Low'].min()
+            # 3. CRITICAL FIX: Filter for Future Dates Only
+            # We only look at rows where the Date is AFTER the Entry Date
+            future_data = df[df.index.date > entry_date]
+
+            if future_data.empty:
+                # This means the trade was taken today, and there is no "tomorrow" data yet.
+                # So we skip checking it.
+                print(f"⏳ {t['symbol']}: Trade is new. Waiting for future data.")
+                continue
+
+            # 4. Check Win/Loss on FUTURE data only
+            high_price = future_data['High'].max()
+            low_price = future_data['Low'].min()
 
             # CHECK WIN
             if high_price >= t['target']:
@@ -66,7 +83,7 @@ def track_trades():
                 msg = f"❌ **TRADE LOST: {t['symbol']}**\n\n⛔ Stop Hit: {t['sl']}\n💸 Loss: -5% (Virtual)"
                 send_telegram(msg)
                 updated = True
-
+                
         except Exception as e:
             print(f"Error checking {symbol}: {e}")
 
