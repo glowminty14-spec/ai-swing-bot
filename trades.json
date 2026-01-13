@@ -14,5 +14,21 @@
         "sl": 35875.7,
         "date": "2026-01-12",
         "status": "OPEN"
+    },
+    {
+        "symbol": "ETERNAL",
+        "entry": 294.5,
+        "target": 325.0,
+        "sl": 279.3,
+        "date": "2026-01-13",
+        "status": "LOSS"
+    },
+    {
+        "symbol": "SBIN",
+        "entry": 1028.4,
+        "target": 1084.4,
+        "sl": 1000.5,
+        "date": "2026-01-13",
+        "status": "LOSS"
     }
 ]
