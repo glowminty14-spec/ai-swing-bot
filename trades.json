@@ -46,5 +46,21 @@
         "sl": 144.1,
         "date": "2026-01-13",
         "status": "OPEN"
+    },
+    {
+        "symbol": "HINDZINC",
+        "entry": 654.2,
+        "target": 739.2,
+        "sl": 611.7,
+        "date": "2026-01-14",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "INDUSINDBK",
+        "entry": 944.5,
+        "target": 1035.5,
+        "sl": 899.0,
+        "date": "2026-01-14",
+        "status": "OPEN"
     }
 ]
