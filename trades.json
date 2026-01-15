@@ -62,5 +62,21 @@
         "sl": 899.0,
         "date": "2026-01-14",
         "status": "OPEN"
+    },
+    {
+        "symbol": "ONGC",
+        "entry": 248.2,
+        "target": 268.5,
+        "sl": 238.1,
+        "date": "2026-01-15",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "TATASTEEL",
+        "entry": 189.2,
+        "target": 205.4,
+        "sl": 181.2,
+        "date": "2026-01-15",
+        "status": "OPEN"
     }
 ]
