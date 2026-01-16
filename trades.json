@@ -94,5 +94,21 @@
         "sl": 1636.0,
         "date": "2026-01-16",
         "status": "OPEN"
+    },
+    {
+        "symbol": "FEDERALBNK",
+        "entry": 270.2,
+        "target": 298.6,
+        "sl": 256.1,
+        "date": "2026-01-16",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "VEDL",
+        "entry": 682.7,
+        "target": 749.9,
+        "sl": 649.1,
+        "date": "2026-01-16",
+        "status": "OPEN"
     }
 ]
