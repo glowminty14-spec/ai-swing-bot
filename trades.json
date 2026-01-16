@@ -78,5 +78,21 @@
         "sl": 181.2,
         "date": "2026-01-15",
         "status": "OPEN"
+    },
+    {
+        "symbol": "ABCAPITAL",
+        "entry": 360.1,
+        "target": 394.6,
+        "sl": 342.9,
+        "date": "2026-01-16",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "COFORGE",
+        "entry": 1727.0,
+        "target": 1908.9,
+        "sl": 1636.0,
+        "date": "2026-01-16",
+        "status": "OPEN"
     }
 ]
