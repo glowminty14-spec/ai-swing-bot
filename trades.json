@@ -110,5 +110,21 @@
         "sl": 649.1,
         "date": "2026-01-16",
         "status": "OPEN"
+    },
+    {
+        "symbol": "ICICIBANK",
+        "entry": 1410.8,
+        "target": 1498.3,
+        "sl": 1367.0,
+        "date": "2026-01-16",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "WIPRO",
+        "entry": 267.5,
+        "target": 287.2,
+        "sl": 257.6,
+        "date": "2026-01-16",
+        "status": "OPEN"
     }
 ]
