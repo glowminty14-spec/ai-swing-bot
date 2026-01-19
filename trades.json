@@ -21,7 +21,7 @@
         "target": 325.0,
         "sl": 279.3,
         "date": "2026-01-13",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "SBIN",
@@ -117,7 +117,7 @@
         "target": 1498.3,
         "sl": 1367.0,
         "date": "2026-01-16",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "WIPRO",
@@ -125,6 +125,22 @@
         "target": 287.2,
         "sl": 257.6,
         "date": "2026-01-16",
+        "status": "LOSS"
+    },
+    {
+        "symbol": "BANKINDIA",
+        "entry": 163.1,
+        "target": 178.6,
+        "sl": 155.3,
+        "date": "2026-01-19",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "LTIM",
+        "entry": 6407.0,
+        "target": 6919.7,
+        "sl": 6150.7,
+        "date": "2026-01-19",
         "status": "OPEN"
     }
 ]
