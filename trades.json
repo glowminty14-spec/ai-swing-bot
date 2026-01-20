@@ -13,7 +13,7 @@
         "target": 41228.7,
         "sl": 35875.7,
         "date": "2026-01-12",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "ETERNAL",
@@ -141,6 +141,22 @@
         "target": 6919.7,
         "sl": 6150.7,
         "date": "2026-01-19",
+        "status": "LOSS"
+    },
+    {
+        "symbol": "HINDZINC",
+        "entry": 680.8,
+        "target": 768.7,
+        "sl": 636.8,
+        "date": "2026-01-20",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "TORNTPHARM",
+        "entry": 3976.8,
+        "target": 4289.3,
+        "sl": 3820.6,
+        "date": "2026-01-20",
         "status": "OPEN"
     }
 ]
