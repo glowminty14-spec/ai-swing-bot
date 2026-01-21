@@ -5,7 +5,7 @@
         "target": 10231.9,
         "sl": 9120.6,
         "date": "2026-01-12",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "BOSCHLTD",
@@ -61,7 +61,7 @@
         "target": 1035.5,
         "sl": 899.0,
         "date": "2026-01-14",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "ONGC",
@@ -77,7 +77,7 @@
         "target": 205.4,
         "sl": 181.2,
         "date": "2026-01-15",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "ABCAPITAL",
@@ -93,7 +93,7 @@
         "target": 1908.9,
         "sl": 1636.0,
         "date": "2026-01-16",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "FEDERALBNK",
@@ -157,6 +157,22 @@
         "target": 4289.3,
         "sl": 3820.6,
         "date": "2026-01-20",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "SHRIRAMFIN",
+        "entry": 986.0,
+        "target": 1076.8,
+        "sl": 940.6,
+        "date": "2026-01-21",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "INDUSINDBK",
+        "entry": 907.2,
+        "target": 1001.5,
+        "sl": 860.0,
+        "date": "2026-01-21",
         "status": "OPEN"
     }
 ]
