@@ -174,5 +174,21 @@
         "sl": 860.0,
         "date": "2026-01-21",
         "status": "OPEN"
+    },
+    {
+        "symbol": "INDIANB",
+        "entry": 896.8,
+        "target": 993.9,
+        "sl": 848.2,
+        "date": "2026-01-22",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "APLAPOLLO",
+        "entry": 1976.0,
+        "target": 2154.6,
+        "sl": 1886.7,
+        "date": "2026-01-22",
+        "status": "OPEN"
     }
 ]
