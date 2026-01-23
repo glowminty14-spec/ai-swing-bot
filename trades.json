@@ -190,5 +190,21 @@
         "sl": 1886.7,
         "date": "2026-01-22",
         "status": "OPEN"
+    },
+    {
+        "symbol": "ASHOKLEY",
+        "entry": 193.0,
+        "target": 214.2,
+        "sl": 182.4,
+        "date": "2026-01-23",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "SBIN",
+        "entry": 1029.5,
+        "target": 1091.8,
+        "sl": 998.4,
+        "date": "2026-01-23",
+        "status": "OPEN"
     }
 ]

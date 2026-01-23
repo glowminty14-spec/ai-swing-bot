@@ -6,7 +6,7 @@
     "BAJAJ-AUTO.NS": "2026-01-12",
     "BOSCHLTD.NS": "2026-01-12",
     "ETERNAL.NS": "2026-01-13",
-    "SBIN.NS": "2026-01-13",
+    "SBIN.NS": "2026-01-23",
     "AUBANK.NS": "2026-01-13",
     "CANBK.NS": "2026-01-13",
     "HINDZINC.NS": "2026-01-20",
@@ -22,5 +22,6 @@
     "LTIM.NS": "2026-01-19",
     "TORNTPHARM.NS": "2026-01-20",
     "SHRIRAMFIN.NS": "2026-01-21",
-    "INDIANB.NS": "2026-01-22"
+    "INDIANB.NS": "2026-01-22",
+    "ASHOKLEY.NS": "2026-01-23"
 }
