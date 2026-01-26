@@ -206,5 +206,21 @@
         "sl": 998.4,
         "date": "2026-01-23",
         "status": "OPEN"
+    },
+    {
+        "symbol": "HINDUNILVR",
+        "entry": 2409.5,
+        "target": 2575.6,
+        "sl": 2326.4,
+        "date": "2026-01-26",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "INDUSINDBK",
+        "entry": 892.5,
+        "target": 987.5,
+        "sl": 844.9,
+        "date": "2026-01-26",
+        "status": "OPEN"
     }
 ]
