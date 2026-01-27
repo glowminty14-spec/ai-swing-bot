@@ -85,7 +85,7 @@
         "target": 394.6,
         "sl": 342.9,
         "date": "2026-01-16",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "COFORGE",
@@ -173,7 +173,7 @@
         "target": 1001.5,
         "sl": 860.0,
         "date": "2026-01-21",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "INDIANB",
@@ -221,6 +221,22 @@
         "target": 987.5,
         "sl": 844.9,
         "date": "2026-01-26",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "HINDZINC",
+        "entry": 727.2,
+        "target": 829.2,
+        "sl": 676.2,
+        "date": "2026-01-27",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "COALINDIA",
+        "entry": 422.9,
+        "target": 459.4,
+        "sl": 404.7,
+        "date": "2026-01-27",
         "status": "OPEN"
     }
 ]
