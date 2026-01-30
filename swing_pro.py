@@ -280,7 +280,7 @@ def run_scan():
 📌 **Stock:** {s['symbol']}
 🏢 **Sector:** {s['sector']}
 🚦 **Market:** {market_icon} {nifty_trend}
-📊 **Score:** {s['score']} / 10
+📊 **Score:** {s['score']} / 12
 🏅 **Confidence:** {confidence}
 
 🧠 **Smart Money Analysis**
