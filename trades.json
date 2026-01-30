@@ -254,5 +254,21 @@
         "sl": 1347.6,
         "date": "2026-01-30",
         "status": "OPEN"
+    },
+    {
+        "symbol": "CUMMINSIND",
+        "entry": 4112.5,
+        "target": 4524.6,
+        "sl": 3906.5,
+        "date": "2026-01-30",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "IDEA",
+        "entry": 11.2,
+        "target": 13.0,
+        "sl": 10.3,
+        "date": "2026-01-30",
+        "status": "OPEN"
     }
 ]
