@@ -69,7 +69,7 @@
         "target": 268.5,
         "sl": 238.1,
         "date": "2026-01-15",
-        "status": "OPEN"
+        "status": "WIN"
     },
     {
         "symbol": "TATASTEEL",
@@ -109,7 +109,7 @@
         "target": 749.9,
         "sl": 649.1,
         "date": "2026-01-16",
-        "status": "OPEN"
+        "status": "WIN"
     },
     {
         "symbol": "ICICIBANK",
@@ -149,7 +149,7 @@
         "target": 768.7,
         "sl": 636.8,
         "date": "2026-01-20",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "TORNTPHARM",
@@ -157,7 +157,7 @@
         "target": 4289.3,
         "sl": 3820.6,
         "date": "2026-01-20",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "SHRIRAMFIN",
@@ -213,7 +213,7 @@
         "target": 2575.6,
         "sl": 2326.4,
         "date": "2026-01-26",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "INDUSINDBK",
@@ -229,7 +229,7 @@
         "target": 829.2,
         "sl": 676.2,
         "date": "2026-01-27",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "COALINDIA",
@@ -237,6 +237,22 @@
         "target": 459.4,
         "sl": 404.7,
         "date": "2026-01-27",
+        "status": "WIN"
+    },
+    {
+        "symbol": "ABB",
+        "entry": 5578.5,
+        "target": 6234.4,
+        "sl": 5250.6,
+        "date": "2026-01-30",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "ADANIPORTS",
+        "entry": 1419.8,
+        "target": 1564.2,
+        "sl": 1347.6,
+        "date": "2026-01-30",
         "status": "OPEN"
     }
 ]
