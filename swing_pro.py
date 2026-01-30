@@ -12,8 +12,8 @@ import io
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
-MAX_ALERTS_PER_DAY = 2
-MIN_SCORE = 7.5
+MAX_ALERTS_PER_DAY = 3
+MIN_SCORE = 9
 
 if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
     print("❌ Error: Telegram tokens not found.")
