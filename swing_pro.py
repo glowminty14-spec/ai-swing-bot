@@ -55,11 +55,38 @@ def load_json(filename):
 def save_json(filename, data):
     with open(filename, 'w') as f: json.dump(data, f, indent=4)
 
+# ================= SMART DUPLICATE CHECKER (UPDATED) =================
 def is_duplicate_alert(ticker):
+    clean_symbol = ticker.replace('.NS', '')
+
+    # LAYER 1: ALERT COOLDOWN (15 Days)
+    # Don't spam the same stock every week.
     history = load_json(HISTORY_FILE)
     if ticker in history:
-        last = datetime.datetime.strptime(history[ticker], "%Y-%m-%d").date()
-        return (datetime.date.today() - last).days < 5
+        try:
+            last = datetime.datetime.strptime(history[ticker], "%Y-%m-%d").date()
+            if (datetime.date.today() - last).days < 15: 
+                return True
+        except: pass
+
+    # LAYER 2: OPEN POSITION BLOCK
+    # If we already own it, don't buy it again.
+    trades = load_json(TRADES_FILE)
+    for t in trades:
+        if t.get('symbol') == clean_symbol and t.get('status') == 'OPEN':
+            return True
+
+    # LAYER 3: LOSS COOLDOWN (20 Days)
+    # If we just lost money on it, put it in penalty box.
+    for t in reversed(trades):
+        if t.get('symbol') == clean_symbol and t.get('status') == 'LOSS':
+            try:
+                loss_date = datetime.datetime.strptime(t.get('date'), "%Y-%m-%d").date()
+                if (datetime.date.today() - loss_date).days < 20: 
+                    return True
+            except: pass
+            break 
+            
     return False
 
 def update_history(ticker):
@@ -222,13 +249,13 @@ def run_scan():
 
     final_signals.sort(key=lambda x: x["score"], reverse=True)
 
-    # --- HEARTBEAT CHECK (Missing in your code) ---
+    # --- HEARTBEAT CHECK ---
     if not final_signals:
         print("No setups found.")
         msg = f"📉 **Daily Scan Complete**\n\nMarket: {market_icon} {nifty_trend}\n✅ Scanned: {len(STOCKS)} stocks\n🚫 Found: 0 high-quality setups\n\n_System active._"
         send_telegram_alert(msg)
         return
-    # -----------------------------------------------
+    # -----------------------
 
     print(f"--- Sending {min(len(final_signals), MAX_ALERTS_PER_DAY)} Alerts ---")
 
@@ -277,7 +304,7 @@ _Auto-Analysis by SwingBot_
         send_telegram_alert(msg)
         update_history(s["symbol"] + ".NS")
 
-        # --- RESTORED TRADE RECORDER (CRITICAL) ---
+        # --- TRADE RECORDER ---
         try:
             trade_record = {
                 "symbol": s['symbol'],
@@ -293,7 +320,7 @@ _Auto-Analysis by SwingBot_
             print(f"📝 Recorded {s['symbol']} to ledger.")
         except Exception as e:
             print(f"Error saving ledger: {e}")
-        # ------------------------------------------
+        # ----------------------
 
 if __name__ == "__main__":
     run_scan()
