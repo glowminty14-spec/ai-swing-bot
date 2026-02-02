@@ -29,7 +29,7 @@
         "target": 1084.4,
         "sl": 1000.5,
         "date": "2026-01-13",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "AUBANK",
@@ -45,7 +45,7 @@
         "target": 164.4,
         "sl": 144.1,
         "date": "2026-01-13",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "HINDZINC",
@@ -53,7 +53,7 @@
         "target": 739.2,
         "sl": 611.7,
         "date": "2026-01-14",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "INDUSINDBK",
@@ -133,7 +133,7 @@
         "target": 178.6,
         "sl": 155.3,
         "date": "2026-01-19",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "LTIM",
@@ -181,7 +181,7 @@
         "target": 993.9,
         "sl": 848.2,
         "date": "2026-01-22",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "APLAPOLLO",
@@ -205,7 +205,7 @@
         "target": 1091.8,
         "sl": 998.4,
         "date": "2026-01-23",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "HINDUNILVR",
@@ -269,6 +269,30 @@
         "target": 13.0,
         "sl": 10.3,
         "date": "2026-01-30",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "NATIONALUM",
+        "entry": 363.0,
+        "target": 421.1,
+        "sl": 334.0,
+        "date": "2026-02-02",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "INDUSTOWER",
+        "entry": 421.8,
+        "target": 473.7,
+        "sl": 395.8,
+        "date": "2026-02-02",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "ONGC",
+        "entry": 249.6,
+        "target": 279.4,
+        "sl": 234.6,
+        "date": "2026-02-02",
         "status": "OPEN"
     }
 ]
