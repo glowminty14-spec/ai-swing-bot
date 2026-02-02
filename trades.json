@@ -165,7 +165,7 @@
         "target": 1076.8,
         "sl": 940.6,
         "date": "2026-01-21",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "INDUSINDBK",
@@ -292,6 +292,14 @@
         "entry": 249.6,
         "target": 279.4,
         "sl": 234.6,
+        "date": "2026-02-02",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "SAIL",
+        "entry": 148.7,
+        "target": 171.2,
+        "sl": 137.4,
         "date": "2026-02-02",
         "status": "OPEN"
     }
