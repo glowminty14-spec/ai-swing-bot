@@ -334,5 +334,21 @@
         "sl": 1625.0,
         "date": "2026-02-03",
         "status": "OPEN"
+    },
+    {
+        "symbol": "SIEMENS",
+        "entry": 3211.7,
+        "target": 3570.2,
+        "sl": 3032.5,
+        "date": "2026-02-03",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "POLYCAB",
+        "entry": 7505.0,
+        "target": 8445.9,
+        "sl": 7034.5,
+        "date": "2026-02-03",
+        "status": "OPEN"
     }
 ]
