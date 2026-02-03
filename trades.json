@@ -189,7 +189,7 @@
         "target": 2154.6,
         "sl": 1886.7,
         "date": "2026-01-22",
-        "status": "OPEN"
+        "status": "WIN"
     },
     {
         "symbol": "ASHOKLEY",
@@ -301,6 +301,22 @@
         "target": 171.2,
         "sl": 137.4,
         "date": "2026-02-02",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "WAAREEENER",
+        "entry": 3162.9,
+        "target": 3669.0,
+        "sl": 2909.9,
+        "date": "2026-02-03",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "ADANIENSOL",
+        "entry": 978.5,
+        "target": 1135.1,
+        "sl": 900.2,
+        "date": "2026-02-03",
         "status": "OPEN"
     }
 ]
