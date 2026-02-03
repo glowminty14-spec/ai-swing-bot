@@ -9,7 +9,7 @@ jobs:
   run-scanner:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # <--- CRITICAL PERMISSION TO SAVE FILES
+      contents: write  # required to commit json files
 
     steps:
       - name: Checkout code
@@ -23,25 +23,29 @@ jobs:
       - name: Install Libraries
         run: pip install -r requirements.txt
 
-      # 1. Run the Scanner (Finds New Stocks)
+      # 1️⃣ Production Swing Bot (Telegram Alerts)
       - name: Run Swing Scanner
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python swing_pro.py
 
-      # 2. Run the Manager (Checks Old Trades)
+      # 2️⃣ Production Trade Manager
       - name: Run Trade Manager
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python trade_manager.py
 
-      # 3. Save the "Notebook" (trades.json)
+      # 3️⃣ ML Silent Bot (NO ALERTS)
+      - name: Run ML Silent Scanner
+        run: python mlswingpro.py
+
+      # 4️⃣ Commit All Ledgers
       - name: Commit and Push Results
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add alert_history.json trades.json
-          git commit -m "Update Daily Ledger" || exit 0
+          git add alert_history.json trades.json mltrades.json
+          git commit -m "Update Daily Ledgers" || exit 0
           git push
