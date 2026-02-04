@@ -253,7 +253,7 @@
         "target": 1564.2,
         "sl": 1347.6,
         "date": "2026-01-30",
-        "status": "OPEN"
+        "status": "WIN"
     },
     {
         "symbol": "CUMMINSIND",
@@ -349,6 +349,22 @@
         "target": 8445.9,
         "sl": 7034.5,
         "date": "2026-02-03",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "PFC",
+        "entry": 414.6,
+        "target": 462.3,
+        "sl": 390.7,
+        "date": "2026-02-04",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "BHARTIARTL",
+        "entry": 2025.8,
+        "target": 2183.0,
+        "sl": 1947.2,
+        "date": "2026-02-04",
         "status": "OPEN"
     }
 ]
