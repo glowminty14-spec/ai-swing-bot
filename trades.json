@@ -366,5 +366,21 @@
         "sl": 1947.2,
         "date": "2026-02-04",
         "status": "OPEN"
+    },
+    {
+        "symbol": "GMRAIRPORT",
+        "entry": 97.4,
+        "target": 108.9,
+        "sl": 91.7,
+        "date": "2026-02-05",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "NYKAA",
+        "entry": 258.3,
+        "target": 288.0,
+        "sl": 243.5,
+        "date": "2026-02-05",
+        "status": "OPEN"
     }
 ]

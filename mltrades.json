@@ -376,5 +376,41 @@
             "buy_pressure": 1.7397518148327547,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "COALINDIA",
+        "entry": 431.9,
+        "target": 482.8,
+        "sl": 406.4,
+        "date": "2026-02-05",
+        "status": "OPEN",
+        "features": {
+            "rsi": 54.595738556350085,
+            "adx": 32.205983005886125,
+            "ema20_dist": 0.010750884742646993,
+            "ema200_dist": 0.0969919435780343,
+            "volume_ratio": 0.5492692748357884,
+            "atr_pct": 0.029507115360320794,
+            "buy_pressure": 2.1090018269487567,
+            "market_trend": 0
+        }
+    },
+    {
+        "symbol": "CUMMINSIND",
+        "entry": 4391.4,
+        "target": 4957.7,
+        "sl": 4108.3,
+        "date": "2026-02-05",
+        "status": "OPEN",
+        "features": {
+            "rsi": 65.01939387011603,
+            "adx": 29.378666830708575,
+            "ema20_dist": 0.05727713650053145,
+            "ema200_dist": 0.11127281304621407,
+            "volume_ratio": 2.5468883011369696,
+            "atr_pct": 0.032238922336576624,
+            "buy_pressure": 3.0872873869417488,
+            "market_trend": 0
+        }
     }
 ]
