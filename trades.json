@@ -382,5 +382,21 @@
         "sl": 243.5,
         "date": "2026-02-05",
         "status": "OPEN"
+    },
+    {
+        "symbol": "LICI",
+        "entry": 901.8,
+        "target": 982.2,
+        "sl": 861.7,
+        "date": "2026-02-06",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "POWERINDIA",
+        "entry": 21871.0,
+        "target": 25370.4,
+        "sl": 20121.3,
+        "date": "2026-02-06",
+        "status": "OPEN"
     }
 ]
