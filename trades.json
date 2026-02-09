@@ -398,5 +398,21 @@
         "sl": 20121.3,
         "date": "2026-02-06",
         "status": "OPEN"
+    },
+    {
+        "symbol": "HINDALCO",
+        "entry": 964.2,
+        "target": 1082.0,
+        "sl": 905.4,
+        "date": "2026-02-09",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "FORTIS",
+        "entry": 891.3,
+        "target": 983.9,
+        "sl": 845.0,
+        "date": "2026-02-09",
+        "status": "OPEN"
     }
 ]

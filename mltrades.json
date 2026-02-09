@@ -502,5 +502,59 @@
             "buy_pressure": 2.3246060180893444,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "BLUESTARCO",
+        "entry": 1937.0,
+        "target": 2196.4,
+        "sl": 1807.3,
+        "date": "2026-02-09",
+        "status": "OPEN",
+        "features": {
+            "rsi": 67.92496420244508,
+            "adx": 21.31555689755126,
+            "ema20_dist": 0.06526048291756023,
+            "ema200_dist": 0.06527020408216358,
+            "volume_ratio": 2.8645589986870434,
+            "atr_pct": 0.03347384149980143,
+            "buy_pressure": 3.314210234381743,
+            "market_trend": 0
+        }
+    },
+    {
+        "symbol": "FORTIS",
+        "entry": 891.3,
+        "target": 983.9,
+        "sl": 845.0,
+        "date": "2026-02-09",
+        "status": "OPEN",
+        "features": {
+            "rsi": 56.12597343071682,
+            "adx": 25.81134371175436,
+            "ema20_dist": 0.026242575142746014,
+            "ema200_dist": 0.03697681818492999,
+            "volume_ratio": 0.7920264147029086,
+            "atr_pct": 0.025969090935561,
+            "buy_pressure": 2.5327736437811716,
+            "market_trend": 0
+        }
+    },
+    {
+        "symbol": "HINDALCO",
+        "entry": 964.2,
+        "target": 1082.0,
+        "sl": 905.4,
+        "date": "2026-02-09",
+        "status": "OPEN",
+        "features": {
+            "rsi": 55.94315027716589,
+            "adx": 27.63708732556039,
+            "ema20_dist": 0.019219258788706475,
+            "ema200_dist": 0.18286030160200042,
+            "volume_ratio": 0.7598610821641941,
+            "atr_pct": 0.03052921323083298,
+            "buy_pressure": 2.2773398677685504,
+            "market_trend": 0
+        }
     }
 ]
