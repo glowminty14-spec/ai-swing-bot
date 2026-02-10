@@ -414,5 +414,21 @@
         "sl": 845.0,
         "date": "2026-02-09",
         "status": "OPEN"
+    },
+    {
+        "symbol": "TATASTEEL",
+        "entry": 208.0,
+        "target": 232.5,
+        "sl": 195.7,
+        "date": "2026-02-10",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "BHARTIHEXA",
+        "entry": 1684.0,
+        "target": 1913.0,
+        "sl": 1569.5,
+        "date": "2026-02-10",
+        "status": "OPEN"
     }
 ]
