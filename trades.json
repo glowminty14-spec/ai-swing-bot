@@ -197,7 +197,7 @@
         "target": 214.2,
         "sl": 182.4,
         "date": "2026-01-23",
-        "status": "OPEN"
+        "status": "WIN"
     },
     {
         "symbol": "SBIN",
@@ -429,6 +429,22 @@
         "target": 1913.0,
         "sl": 1569.5,
         "date": "2026-02-10",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "APOLLOHOSP",
+        "entry": 7507.0,
+        "target": 8148.9,
+        "sl": 7186.0,
+        "date": "2026-02-11",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "IOC",
+        "entry": 181.3,
+        "target": 198.3,
+        "sl": 172.8,
+        "date": "2026-02-11",
         "status": "OPEN"
     }
 ]
