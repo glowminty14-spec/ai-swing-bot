@@ -462,5 +462,21 @@
         "sl": 154.2,
         "date": "2026-02-12",
         "status": "OPEN"
+    },
+    {
+        "symbol": "EICHERMOT",
+        "entry": 7943.0,
+        "target": 8725.6,
+        "sl": 7551.7,
+        "date": "2026-02-12",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "MFSL",
+        "entry": 1813.5,
+        "target": 1995.4,
+        "sl": 1722.5,
+        "date": "2026-02-12",
+        "status": "OPEN"
     }
 ]
