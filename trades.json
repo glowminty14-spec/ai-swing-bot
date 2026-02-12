@@ -285,7 +285,7 @@
         "target": 473.7,
         "sl": 395.8,
         "date": "2026-02-02",
-        "status": "OPEN"
+        "status": "WIN"
     },
     {
         "symbol": "ONGC",
@@ -293,7 +293,7 @@
         "target": 279.4,
         "sl": 234.6,
         "date": "2026-02-02",
-        "status": "OPEN"
+        "status": "WIN"
     },
     {
         "symbol": "SAIL",
@@ -445,6 +445,22 @@
         "target": 198.3,
         "sl": 172.8,
         "date": "2026-02-11",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "SBIN",
+        "entry": 1192.4,
+        "target": 1305.4,
+        "sl": 1135.9,
+        "date": "2026-02-12",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "BANKINDIA",
+        "entry": 165.3,
+        "target": 187.5,
+        "sl": 154.2,
+        "date": "2026-02-12",
         "status": "OPEN"
     }
 ]
