@@ -389,7 +389,7 @@
         "target": 982.2,
         "sl": 861.7,
         "date": "2026-02-06",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "POWERINDIA",
@@ -405,7 +405,7 @@
         "target": 1082.0,
         "sl": 905.4,
         "date": "2026-02-09",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "FORTIS",
