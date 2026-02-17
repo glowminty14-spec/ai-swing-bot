@@ -445,7 +445,7 @@
         "target": 198.3,
         "sl": 172.8,
         "date": "2026-02-11",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "SBIN",
@@ -477,6 +477,14 @@
         "target": 1995.4,
         "sl": 1722.5,
         "date": "2026-02-12",
+        "status": "OPEN"
+    },
+    {
+        "symbol": "UNIONBANK",
+        "entry": 188.9,
+        "target": 211.6,
+        "sl": 177.5,
+        "date": "2026-02-17",
         "status": "OPEN"
     }
 ]
