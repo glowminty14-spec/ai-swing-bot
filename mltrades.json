@@ -790,5 +790,23 @@
             "buy_pressure": 3.158815754081569,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "SHRIRAMFIN",
+        "entry": 1054.7,
+        "target": 1176.7,
+        "sl": 993.7,
+        "date": "2026-02-19",
+        "status": "OPEN",
+        "features": {
+            "rsi": 57.560991296197976,
+            "adx": 27.545124934589364,
+            "ema20_dist": 0.01668399868474244,
+            "ema200_dist": 0.24256628943526679,
+            "volume_ratio": 0.4163976758416815,
+            "atr_pct": 0.028916191847437465,
+            "buy_pressure": 2.1242160822485197,
+            "market_trend": 0
+        }
     }
 ]
