@@ -1,5 +1,5 @@
 {
-    "APLAPOLLO.NS": "2026-01-22",
+    "APLAPOLLO.NS": "2026-02-23",
     "ABCAPITAL.NS": "2026-01-16",
     "APOLLOHOSP.NS": "2026-02-11",
     "AXISBANK.NS": "2026-01-12",
@@ -51,5 +51,6 @@
     "IOC.NS": "2026-02-11",
     "EICHERMOT.NS": "2026-02-12",
     "MFSL.NS": "2026-02-12",
-    "UNIONBANK.NS": "2026-02-17"
+    "UNIONBANK.NS": "2026-02-17",
+    "BEL.NS": "2026-02-23"
 }

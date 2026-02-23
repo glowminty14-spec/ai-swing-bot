@@ -826,5 +826,23 @@
             "buy_pressure": 0.7405359193726921,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "HDFCLIFE",
+        "entry": 743.2,
+        "target": 799.3,
+        "sl": 715.2,
+        "date": "2026-02-23",
+        "status": "OPEN",
+        "features": {
+            "rsi": 60.30746407846421,
+            "adx": 23.313413404642127,
+            "ema20_dist": 0.028729179449171575,
+            "ema200_dist": 0.007929802635663473,
+            "volume_ratio": 0.3331860539916674,
+            "atr_pct": 0.01885321185872812,
+            "buy_pressure": 2.2136400208304723,
+            "market_trend": 0
+        }
     }
 ]

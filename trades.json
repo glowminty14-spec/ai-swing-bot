@@ -494,5 +494,19 @@
         "sl": 4458.0,
         "date": "2026-02-18",
         "status": "OPEN"
+    },
+    {
+        "symbol": "APLAPOLLO",
+        "entry": 2188.0,
+        "sl": 2094.6,
+        "status": "OPEN",
+        "date": "2026-02-23"
+    },
+    {
+        "symbol": "BEL",
+        "entry": 436.0,
+        "sl": 415.2,
+        "status": "OPEN",
+        "date": "2026-02-23"
     }
 ]
