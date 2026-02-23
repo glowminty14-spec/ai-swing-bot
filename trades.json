@@ -508,5 +508,12 @@
         "sl": 415.2,
         "status": "OPEN",
         "date": "2026-02-23"
+    },
+    {
+        "symbol": "SHRIRAMFIN",
+        "entry": 1064.7,
+        "sl": 1012.2,
+        "status": "OPEN",
+        "date": "2026-02-23"
     }
 ]
