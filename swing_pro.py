@@ -35,51 +35,31 @@ def fetch_live_nifty_stocks():
                     for _, row in df.iterrows()}
     except:
         pass
-
-    return {
-        "HDFCBANK.NS": "Bank", "RELIANCE.NS": "Energy", "INFY.NS": "IT",
-        "TATAMOTORS.NS": "Auto", "ITC.NS": "FMCG", "SBIN.NS": "Bank"
-    }
+    return {"HDFCBANK.NS": "Bank", "RELIANCE.NS": "Energy", "INFY.NS": "IT"}
 
 STOCKS = fetch_live_nifty_stocks()
 
 # ================= DATA HELPERS =================
 def load_json(filename):
-    if not os.path.exists(filename):
-        return {} if "history" in filename else []
+    if not os.path.exists(filename): return {} if "history" in filename else []
     try:
         with open(filename, 'r') as f: return json.load(f)
-    except:
-        return {} if "history" in filename else []
+    except: return {} if "history" in filename else []
 
 def save_json(filename, data):
     with open(filename, 'w') as f: json.dump(data, f, indent=4)
 
-# ================= SMART DUPLICATE CHECKER =================
 def is_duplicate_alert(ticker):
     clean_symbol = ticker.replace('.NS', '')
     history = load_json(HISTORY_FILE)
     if ticker in history:
         try:
             last = datetime.datetime.strptime(history[ticker], "%Y-%m-%d").date()
-            if (datetime.date.today() - last).days < 15: 
-                return True
+            if (datetime.date.today() - last).days < 15: return True
         except: pass
-
     trades = load_json(TRADES_FILE)
     for t in trades:
-        if t.get('symbol') == clean_symbol and t.get('status') == 'OPEN':
-            return True
-
-    for t in reversed(trades):
-        if t.get('symbol') == clean_symbol and t.get('status') == 'LOSS':
-            try:
-                loss_date = datetime.datetime.strptime(t.get('date'), "%Y-%m-%d").date()
-                if (datetime.date.today() - loss_date).days < 20: 
-                    return True
-            except: pass
-            break 
-            
+        if t.get('symbol') == clean_symbol and t.get('status') == 'OPEN': return True
     return False
 
 def update_history(ticker):
@@ -111,159 +91,126 @@ def get_fundamentals(ticker):
         if margin > 0.10:
             score += 0.5
             notes.append(f"✅ Margin: {round(margin*100,1)}%")
-        if not notes:
-            notes.append("⚠️ Weak Fundamentals")
-        return score, "\n".join(notes)
-    except:
-        return 0, "⚠️ No Fundamental Data"
+        return score, "\n".join(notes) if notes else "⚠️ Neutral Fundamentals"
+    except: return 0, "⚠️ No Fundamental Data"
 
 # ================= ANALYSIS ENGINE =================
 def analyze_stock(ticker, sector, nifty_trend, nifty_ret):
     try:
+        # 1. Download & Data Cleaning
         df = yf.download(ticker, period="2y", progress=False)
-        if df.empty or len(df) < 260: return None # Ensure enough data for 52W check
+        if df.empty or len(df) < 260: return None
+        if isinstance(df.columns, pd.MultiIndex): df.columns = df.columns.get_level_values(0)
 
-        if isinstance(df.columns, pd.MultiIndex):
-            df = df.xs(ticker, level=1, axis=1)
-
-        # Weekly trend
+        # 2. Weekly Trend Guard (Institutional Filter)
         weekly = df.resample("W").agg({"Close": "last"})
         weekly["EMA50"] = ta.ema(weekly["Close"], 50)
-        if weekly["Close"].iloc[-1] < weekly["EMA50"].iloc[-1]: return None
+        if weekly["EMA50"].isna().iloc[-1] or weekly["Close"].iloc[-1] < weekly["EMA50"].iloc[-1]:
+            return None
 
-        # Indicators
+        # 3. Indicators
         df["EMA20"] = ta.ema(df["Close"], 20)
         df["EMA200"] = ta.ema(df["Close"], 200)
         df["RSI"] = ta.rsi(df["Close"], 14)
         df["ATR"] = ta.atr(df["High"], df["Low"], df["Close"], 14)
-        adx = ta.adx(df["High"], df["Low"], df["Close"], 14)
-        df = pd.concat([df, adx], axis=1)
+        adx_df = ta.adx(df["High"], df["Low"], df["Close"], 14)
+        df = pd.concat([df, adx_df], axis=1)
+        adx_col = [c for c in df.columns if "ADX_14" in c][0]
         
         df = df.dropna()
         curr = df.iloc[-1]
+        prev = df.iloc[-2]
         avg_vol = df["Volume"].rolling(20).mean().iloc[-1]
 
-        # 🚀 1. TURNOVER FILTER (MIN 5 CRORE)
-        if (avg_vol * curr["Close"]) < 50000000:
-            return None
+        # 4. Strength Filters
+        n_ret = nifty_ret.item() if hasattr(nifty_ret, "item") else nifty_ret
+        stock_ret = (curr["Close"] / df["Close"].iloc[-60]) - 1
+        if (avg_vol * curr["Close"]) < 50000000: return None
+        if stock_ret < n_ret: return None
+        if curr["Close"] < curr["EMA200"] or curr[adx_col] < 20: return None
 
-        # 🚀 2. RELATIVE STRENGTH FILTER (VS NIFTY 3-MONTHS)
-        stock_ret = (df["Close"].iloc[-1] / df["Close"].iloc[-60]) - 1
-        if stock_ret < nifty_ret:
-            return None
-
-        # Technical Filters
-        if curr["Close"] < curr["EMA200"]: return None
-        adx_col = [c for c in df.columns if "ADX_14" in c][0]
-        if curr[adx_col] < 20: return None
-
-        # Scoring Logic
+        # 5. Scoring & Setup Logic
         score = 5.0
         reasons = ["Weekly Trend Bullish", "🔥 Outperforming Nifty"]
-        setup = None
-
-        # 🚀 3. 52-WEEK HIGH BONUS
-        yearly_high = df["High"].rolling(252).max().iloc[-2]
+        
+        # Rule: 52-Week High (Excluding recent 20-day volatility)
+        yearly_high = df["High"].iloc[-252:-20].max()
         if curr["Close"] > yearly_high:
-            score += 2.0
-            reasons.append("🏆 52-Week High Breakout")
+            score += 2.5
+            reasons.append("🏆 Long-term Base Breakout")
 
-        if nifty_trend == "BULLISH": score += 0.5
-
+        # Accumulation
         last_10 = df.tail(10)
         green_vol = last_10[last_10["Close"] > last_10["Open"]]["Volume"].sum()
         red_vol = last_10[last_10["Close"] < last_10["Open"]]["Volume"].sum() or 1
         buy_pressure = green_vol / red_vol
+        if buy_pressure > 2.0:
+            score += 1.5
+            reasons.append(f"🐳 Accumulation ({round(buy_pressure,1)}x)")
 
-        if buy_pressure > 2:
-            score += 1.5
-            reasons.append(f"🐳 Strong Accumulation ({round(buy_pressure,1)}x)")
-        
-        # Setup Detection
-        range_high = df.iloc[-11:-1]["High"].max()
-        if curr["Close"] > range_high and curr["Volume"] > 1.5 * avg_vol:
-            setup = "🚀 Breakout"
-            score += 2
-        elif abs(curr["Close"] - curr["EMA20"]) / curr["Close"] < 0.03 and 45 <= curr["RSI"] <= 60:
-            setup = "🧲 Pullback"
-            score += 1.5
+        # Specific Setup Detection
+        setup = None
+        # BREAKOUT: Price > 10d high + 2x Volume Surge
+        if curr["Close"] > df.iloc[-11:-1]["High"].max() and curr["Volume"] > (2.0 * avg_vol):
+            setup = "🚀 Institutional Breakout"
+            score += 2.5
+        # PULLBACK: Trend Sandwich (EMA20 > EMA200) + Touch
+        elif (curr["Close"] > curr["EMA20"] > curr["EMA200"] and 
+              prev["Low"] <= curr["EMA20"] * 1.02 and 45 <= curr["RSI"] <= 60):
+            setup = "🧲 Trend Pullback"
+            score += 2.0
 
         if not setup or score < MIN_SCORE: return None
 
-        sl = max(curr["Close"] - 2 * curr["ATR"], curr["Close"] * 0.92)
-        target = curr["Close"] + (curr["Close"] - sl) * 2
+        # 6. Risk Management (The 12% Ceiling)
+        sl = round(curr["Close"] - (1.8 * curr["ATR"]), 1)
+        risk_pct = (curr["Close"] - sl) / curr["Close"]
+        if risk_pct > 0.12: return None # Skip if too volatile
+        
+        target = round(curr["Close"] + (curr["Close"] - sl) * 2.5, 1)
 
         return {
-            "symbol": ticker.replace(".NS", ""),
-            "sector": sector,
-            "setup": setup,
-            "entry": round(curr["Close"], 1),
-            "sl": round(sl, 1),
-            "t1": round(target, 1),
-            "score": round(score, 1),
-            "reasons": reasons,
-            "ticker_full": ticker,
-            "buy_pressure": buy_pressure
+            "symbol": ticker.replace(".NS", ""), "sector": sector, "setup": setup,
+            "entry": round(curr["Close"], 1), "sl": sl, "t1": target,
+            "score": round(score, 1), "reasons": reasons, "ticker_full": ticker
         }
     except Exception as e:
-        print(f"Error on {ticker}: {e}")
         return None
 
 # ================= RUNNER =================
 def run_scan():
-    print("--- 🔍 Starting Fantastic Scan (With Quality Boosts) ---")
-    nifty_trend = "NEUTRAL"
-    nifty_ret = 0
+    print("--- 🔍 Starting Bulletproof Institutional Scan ---")
+    nifty_trend, nifty_ret = "NEUTRAL", 0
     try:
-        nifty_data = yf.download("^NSEI", period="1y", progress=False)["Close"]
+        n_df = yf.download("^NSEI", period="1y", progress=False)
+        if isinstance(n_df.columns, pd.MultiIndex): n_df.columns = n_df.columns.get_level_values(0)
+        nifty_data = n_df["Close"]
         nifty_trend = "BULLISH" if nifty_data.iloc[-1] > ta.ema(nifty_data, 50).iloc[-1] else "BEARISH"
-        # Calculate Nifty 3-month return (approx 60 trading days)
         nifty_ret = (nifty_data.iloc[-1] / nifty_data.iloc[-60]) - 1
-        print(f"📊 Nifty 3M Return: {round(nifty_ret*100, 2)}%")
     except: pass
 
-    market_icon = "🟢" if nifty_trend == "BULLISH" else "🔴"
     signals = []
-    
     for ticker, sector in STOCKS.items():
         if not is_duplicate_alert(ticker):
-            # Send the nifty_ret into the analysis
-            data = analyze_stock(ticker, sector, nifty_trend, nifty_ret)
-            if data: signals.append(data)
+            res = analyze_stock(ticker, sector, nifty_trend, nifty_ret)
+            if res: signals.append(res)
 
     signals.sort(key=lambda x: x["score"], reverse=True)
-
-    final_signals = []
-    for s in signals[:5]:
+    
+    for s in signals[:MAX_ALERTS_PER_DAY]:
         fs, fn = get_fundamentals(s["ticker_full"])
         s["score"] += fs
-        s["fund_notes"] = fn
-        final_signals.append(s)
-
-    final_signals.sort(key=lambda x: x["score"], reverse=True)
-
-    if not final_signals:
-        msg = f"📉 **Daily Scan Complete**\n\nMarket: {market_icon} {nifty_trend}\n✅ Scanned: {len(STOCKS)} stocks\n🚫 Found: 0 high-quality setups"
-        send_telegram_alert(msg)
-        return
-
-    for s in final_signals[:MAX_ALERTS_PER_DAY]:
-        if s["score"] >= 9.5 and nifty_trend == "BULLISH": confidence = "A+"
-        elif s["score"] >= 8.5: confidence = "A"
-        else: confidence = "B"
-
+        
         reasoning = "\n".join([f"• {r}" for r in s["reasons"]])
-        msg = f"💎 **INSTITUTIONAL SWING ALERT**\n\n📌 **Stock:** {s['symbol']}\n🏢 **Sector:** {s['sector']}\n📊 **Score:** {s['score']} / 14\n🏅 **Confidence:** {confidence}\n\n🧠 **Analysis**\n{reasoning}\n\n🏢 **Fundamentals**\n{s['fund_notes']}\n\n📍 **Entry:** {s['entry']}\n⛔ **Stop:** {s['sl']}\n🎯 **Target:** {s['t1']}\n\n_SwingBot v2.0_"
+        msg = f"💎 **INSTITUTIONAL ALERT**\n\n📌 **Stock:** {s['symbol']}\n📊 **Score:** {s['score']}\n🎯 **Setup:** {s['setup']}\n\n🧠 **Analysis**\n{reasoning}\n\n🏢 **Fundamentals**\n{fn}\n\n📍 **Entry:** {s['entry']}\n⛔ **Stop:** {s['sl']}\n🎯 **Target:** {s['t1']}"
         
         send_telegram_alert(msg)
         update_history(s["symbol"] + ".NS")
         
-        # Record Trade
-        try:
-            current_trades = load_json(TRADES_FILE)
-            current_trades.append({"symbol": s['symbol'], "entry": s['entry'], "target": s['t1'], "sl": s['sl'], "date": str(datetime.date.today()), "status": "OPEN"})
-            save_json(TRADES_FILE, current_trades)
-        except: pass
+        # Save Trade
+        db = load_json(TRADES_FILE)
+        db.append({"symbol": s['symbol'], "entry": s['entry'], "sl": s['sl'], "status": "OPEN", "date": str(datetime.date.today())})
+        save_json(TRADES_FILE, db)
 
 if __name__ == "__main__":
     run_scan()
