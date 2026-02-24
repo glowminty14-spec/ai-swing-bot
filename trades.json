@@ -101,7 +101,7 @@
         "target": 298.6,
         "sl": 256.1,
         "date": "2026-01-16",
-        "status": "OPEN"
+        "status": "WIN"
     },
     {
         "symbol": "VEDL",
@@ -365,7 +365,7 @@
         "target": 2183.0,
         "sl": 1947.2,
         "date": "2026-02-04",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "GMRAIRPORT",
@@ -515,5 +515,12 @@
         "sl": 1012.2,
         "status": "OPEN",
         "date": "2026-02-23"
+    },
+    {
+        "symbol": "TORNTPHARM",
+        "entry": 4397.9,
+        "sl": 4225.3,
+        "status": "OPEN",
+        "date": "2026-02-24"
     }
 ]
