@@ -522,5 +522,12 @@
         "sl": 4225.3,
         "status": "OPEN",
         "date": "2026-02-24"
+    },
+    {
+        "symbol": "INDUSTOWER",
+        "entry": 461.5,
+        "sl": 439.4,
+        "status": "OPEN",
+        "date": "2026-02-25"
     }
 ]
