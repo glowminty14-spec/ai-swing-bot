@@ -349,7 +349,7 @@
         "target": 8445.9,
         "sl": 7034.5,
         "date": "2026-02-03",
-        "status": "OPEN"
+        "status": "WIN"
     },
     {
         "symbol": "PFC",
@@ -397,7 +397,7 @@
         "target": 25370.4,
         "sl": 20121.3,
         "date": "2026-02-06",
-        "status": "OPEN"
+        "status": "WIN"
     },
     {
         "symbol": "HINDALCO",
