@@ -529,5 +529,19 @@
         "sl": 439.4,
         "status": "OPEN",
         "date": "2026-02-25"
+    },
+    {
+        "symbol": "POLYCAB",
+        "entry": 8610.5,
+        "sl": 8254.5,
+        "status": "OPEN",
+        "date": "2026-02-27"
+    },
+    {
+        "symbol": "LT",
+        "entry": 4278.3,
+        "sl": 4130.6,
+        "status": "OPEN",
+        "date": "2026-02-27"
     }
 ]

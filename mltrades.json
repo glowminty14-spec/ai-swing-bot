@@ -880,5 +880,59 @@
             "buy_pressure": 3.1016378445868145,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "ASHOKLEY",
+        "entry": 211.1,
+        "target": 231.8,
+        "sl": 200.7,
+        "date": "2026-02-27",
+        "status": "OPEN",
+        "features": {
+            "rsi": 64.19732634156688,
+            "adx": 45.778104158437664,
+            "ema20_dist": 0.027032116903359316,
+            "ema200_dist": 0.261732760542494,
+            "volume_ratio": 0.8629934155767783,
+            "atr_pct": 0.02456165251822626,
+            "buy_pressure": 2.446606585140104,
+            "market_trend": 0
+        }
+    },
+    {
+        "symbol": "JSWSTEEL",
+        "entry": 1264.7,
+        "target": 1361.1,
+        "sl": 1216.5,
+        "date": "2026-02-27",
+        "status": "OPEN",
+        "features": {
+            "rsi": 60.49409598737566,
+            "adx": 21.227324833879823,
+            "ema20_dist": 0.01816910872073345,
+            "ema200_dist": 0.112033401269076,
+            "volume_ratio": 1.6533780831733564,
+            "atr_pct": 0.019058601324117963,
+            "buy_pressure": 2.007095524868157,
+            "market_trend": 0
+        }
+    },
+    {
+        "symbol": "POWERGRID",
+        "entry": 298.6,
+        "target": 325.5,
+        "sl": 285.2,
+        "date": "2026-02-27",
+        "status": "OPEN",
+        "features": {
+            "rsi": 61.10949621629242,
+            "adx": 33.962022847839,
+            "ema20_dist": 0.02088482372915105,
+            "ema200_dist": 0.0722932354148605,
+            "volume_ratio": 1.2104897507342125,
+            "atr_pct": 0.02245050267614749,
+            "buy_pressure": 2.226203020235749,
+            "market_trend": 0
+        }
     }
 ]

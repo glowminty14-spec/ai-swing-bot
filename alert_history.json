@@ -38,7 +38,7 @@
     "ADANIPOWER.NS": "2026-02-03",
     "SUNPHARMA.NS": "2026-02-03",
     "SIEMENS.NS": "2026-02-03",
-    "POLYCAB.NS": "2026-02-03",
+    "POLYCAB.NS": "2026-02-27",
     "PFC.NS": "2026-02-04",
     "BHARTIARTL.NS": "2026-02-04",
     "GMRAIRPORT.NS": "2026-02-05",
@@ -52,5 +52,6 @@
     "EICHERMOT.NS": "2026-02-12",
     "MFSL.NS": "2026-02-12",
     "UNIONBANK.NS": "2026-02-17",
-    "BEL.NS": "2026-02-23"
+    "BEL.NS": "2026-02-23",
+    "LT.NS": "2026-02-27"
 }
