@@ -477,7 +477,7 @@
         "target": 1995.4,
         "sl": 1722.5,
         "date": "2026-02-12",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "UNIONBANK",
@@ -550,5 +550,19 @@
         "sl": 4918.5,
         "status": "OPEN",
         "date": "2026-03-02"
+    },
+    {
+        "symbol": "JSWSTEEL",
+        "entry": 1248.1,
+        "sl": 1197.1,
+        "status": "OPEN",
+        "date": "2026-03-05"
+    },
+    {
+        "symbol": "NTPC",
+        "entry": 378.0,
+        "sl": 362.5,
+        "status": "OPEN",
+        "date": "2026-03-05"
     }
 ]
