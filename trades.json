@@ -564,5 +564,12 @@
         "sl": 362.5,
         "status": "OPEN",
         "date": "2026-03-05"
+    },
+    {
+        "symbol": "ASTRAL",
+        "entry": 1660.7,
+        "sl": 1576.2,
+        "status": "OPEN",
+        "date": "2026-03-10"
     }
 ]
