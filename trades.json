@@ -221,7 +221,7 @@
         "target": 987.5,
         "sl": 844.9,
         "date": "2026-01-26",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "HINDZINC",
@@ -571,5 +571,19 @@
         "sl": 1576.2,
         "status": "OPEN",
         "date": "2026-03-10"
+    },
+    {
+        "symbol": "COALINDIA",
+        "entry": 470.1,
+        "sl": 447.1,
+        "status": "OPEN",
+        "date": "2026-03-12"
+    },
+    {
+        "symbol": "JINDALSTEL",
+        "entry": 1225.0,
+        "sl": 1160.7,
+        "status": "OPEN",
+        "date": "2026-03-12"
     }
 ]
