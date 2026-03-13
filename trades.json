@@ -381,7 +381,7 @@
         "target": 288.0,
         "sl": 243.5,
         "date": "2026-02-05",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "LICI",
@@ -413,7 +413,7 @@
         "target": 983.9,
         "sl": 845.0,
         "date": "2026-02-09",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "TATASTEEL",
@@ -585,5 +585,12 @@
         "sl": 1160.7,
         "status": "OPEN",
         "date": "2026-03-12"
+    },
+    {
+        "symbol": "POWERINDIA",
+        "entry": 24165.0,
+        "sl": 22500.5,
+        "status": "OPEN",
+        "date": "2026-03-13"
     }
 ]
