@@ -592,5 +592,12 @@
         "sl": 22500.5,
         "status": "OPEN",
         "date": "2026-03-13"
+    },
+    {
+        "symbol": "BHARATFORG",
+        "entry": 1804.4,
+        "sl": 1688.0,
+        "status": "OPEN",
+        "date": "2026-03-18"
     }
 ]
