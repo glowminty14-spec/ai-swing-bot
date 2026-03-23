@@ -341,7 +341,7 @@
         "target": 3570.2,
         "sl": 3032.5,
         "date": "2026-02-03",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "POLYCAB",
@@ -437,7 +437,7 @@
         "target": 8148.9,
         "sl": 7186.0,
         "date": "2026-02-11",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "IOC",
@@ -493,7 +493,7 @@
         "target": 5261.4,
         "sl": 4458.0,
         "date": "2026-02-18",
-        "status": "OPEN"
+        "status": "LOSS"
     },
     {
         "symbol": "APLAPOLLO",
