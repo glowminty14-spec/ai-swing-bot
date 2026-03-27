@@ -599,5 +599,12 @@
         "sl": 1688.0,
         "status": "OPEN",
         "date": "2026-03-18"
+    },
+    {
+        "symbol": "ONGC",
+        "entry": 282.0,
+        "sl": 267.2,
+        "status": "OPEN",
+        "date": "2026-03-27"
     }
 ]
