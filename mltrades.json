@@ -1132,5 +1132,23 @@
             "buy_pressure": 2.6741921694539754,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "PREMIERENE",
+        "entry": 937.7,
+        "target": 1076.1,
+        "sl": 868.5,
+        "date": "2026-04-01",
+        "status": "OPEN",
+        "features": {
+            "rsi": 74.76688956241203,
+            "adx": 28.814002233627832,
+            "ema20_dist": 0.10362515375807362,
+            "ema200_dist": 0.03246527831875532,
+            "volume_ratio": 2.243917449401049,
+            "atr_pct": 0.036897428323327194,
+            "buy_pressure": 5.821455243623437,
+            "market_trend": 0
+        }
     }
 ]
