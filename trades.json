@@ -606,5 +606,12 @@
         "sl": 267.2,
         "status": "OPEN",
         "date": "2026-03-27"
+    },
+    {
+        "symbol": "ABB",
+        "entry": 6269.0,
+        "sl": 5909.5,
+        "status": "OPEN",
+        "date": "2026-04-07"
     }
 ]
