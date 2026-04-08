@@ -613,5 +613,12 @@
         "sl": 5909.5,
         "status": "OPEN",
         "date": "2026-04-07"
+    },
+    {
+        "symbol": "TITAN",
+        "entry": 4492.5,
+        "sl": 4255.3,
+        "status": "OPEN",
+        "date": "2026-04-08"
     }
 ]

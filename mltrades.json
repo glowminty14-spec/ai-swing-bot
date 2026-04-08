@@ -1168,5 +1168,41 @@
             "buy_pressure": 17.101199328903313,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "ADANIGREEN",
+        "entry": 1029.7,
+        "target": 1194.4,
+        "sl": 947.3,
+        "date": "2026-04-08",
+        "status": "OPEN",
+        "features": {
+            "rsi": 69.20923332510344,
+            "adx": 24.86908387649048,
+            "ema20_dist": 0.13609833126449772,
+            "ema200_dist": 0.03388044467542049,
+            "volume_ratio": 3.393968961193659,
+            "atr_pct": 0.042971322355318996,
+            "buy_pressure": 6.486031215934398,
+            "market_trend": 0
+        }
+    },
+    {
+        "symbol": "PHOENIXLTD",
+        "entry": 1713.1,
+        "target": 1969.7,
+        "sl": 1584.8,
+        "date": "2026-04-08",
+        "status": "OPEN",
+        "features": {
+            "rsi": 62.32268503146405,
+            "adx": 26.54129241833437,
+            "ema20_dist": 0.07581466808377317,
+            "ema200_dist": 0.02848497771864566,
+            "volume_ratio": 2.387476803914658,
+            "atr_pct": 0.03744524435628136,
+            "buy_pressure": 2.3945786941532967,
+            "market_trend": 0
+        }
     }
 ]
