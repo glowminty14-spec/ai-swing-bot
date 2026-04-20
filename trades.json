@@ -620,5 +620,12 @@
         "sl": 4255.3,
         "status": "OPEN",
         "date": "2026-04-08"
+    },
+    {
+        "symbol": "BHEL",
+        "entry": 325.6,
+        "sl": 303.9,
+        "status": "OPEN",
+        "date": "2026-04-20"
     }
 ]
