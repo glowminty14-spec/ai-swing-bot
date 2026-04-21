@@ -627,5 +627,12 @@
         "sl": 303.9,
         "status": "OPEN",
         "date": "2026-04-20"
+    },
+    {
+        "symbol": "NESTLEIND",
+        "entry": 1379.9,
+        "sl": 1318.4,
+        "status": "OPEN",
+        "date": "2026-04-21"
     }
 ]
