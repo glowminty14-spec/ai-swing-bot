@@ -634,5 +634,19 @@
         "sl": 1318.4,
         "status": "OPEN",
         "date": "2026-04-21"
+    },
+    {
+        "symbol": "ADANIENSOL",
+        "entry": 1368.1,
+        "sl": 1274.5,
+        "status": "OPEN",
+        "date": "2026-04-22"
+    },
+    {
+        "symbol": "ADANIPOWER",
+        "entry": 215.6,
+        "sl": 201.5,
+        "status": "OPEN",
+        "date": "2026-04-22"
     }
 ]

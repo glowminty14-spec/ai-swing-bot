@@ -1348,5 +1348,23 @@
             "buy_pressure": 6.195885704045024,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "HINDUNILVR",
+        "entry": 2368.8,
+        "target": 2611.6,
+        "sl": 2247.4,
+        "date": "2026-04-22",
+        "status": "OPEN",
+        "features": {
+            "rsi": 70.11916530931515,
+            "adx": 27.438447561918018,
+            "ema20_dist": 0.07589948762584152,
+            "ema200_dist": 0.014305381343032933,
+            "volume_ratio": 2.1856277653303477,
+            "atr_pct": 0.02562209139884976,
+            "buy_pressure": 2.7089926379554017,
+            "market_trend": 0
+        }
     }
 ]
