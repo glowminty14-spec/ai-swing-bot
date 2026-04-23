@@ -648,5 +648,19 @@
         "sl": 201.5,
         "status": "OPEN",
         "date": "2026-04-22"
+    },
+    {
+        "symbol": "AUBANK",
+        "entry": 1056.2,
+        "sl": 999.8,
+        "status": "OPEN",
+        "date": "2026-04-23"
+    },
+    {
+        "symbol": "GVT&D",
+        "entry": 4496.4,
+        "sl": 4156.3,
+        "status": "OPEN",
+        "date": "2026-04-23"
     }
 ]

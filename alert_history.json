@@ -7,7 +7,7 @@
     "BOSCHLTD.NS": "2026-01-12",
     "ETERNAL.NS": "2026-01-13",
     "SBIN.NS": "2026-02-12",
-    "AUBANK.NS": "2026-01-13",
+    "AUBANK.NS": "2026-04-23",
     "CANBK.NS": "2026-01-13",
     "HINDZINC.NS": "2026-01-27",
     "INDUSINDBK.NS": "2026-01-26",
@@ -62,5 +62,6 @@
     "BHARATFORG.NS": "2026-03-18",
     "TITAN.NS": "2026-04-08",
     "BHEL.NS": "2026-04-20",
-    "NESTLEIND.NS": "2026-04-21"
+    "NESTLEIND.NS": "2026-04-21",
+    "GVT&D.NS": "2026-04-23"
 }
