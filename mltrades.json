@@ -1510,5 +1510,23 @@
             "buy_pressure": 2.084045157680623,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "TATAPOWER",
+        "entry": 453.2,
+        "target": 501.5,
+        "sl": 429.0,
+        "date": "2026-04-27",
+        "status": "OPEN",
+        "features": {
+            "rsi": 78.12116236993118,
+            "adx": 22.423577446590127,
+            "ema20_dist": 0.07982934899410281,
+            "ema200_dist": 0.14031156663913247,
+            "volume_ratio": 1.6917092317687152,
+            "atr_pct": 0.026653691250485282,
+            "buy_pressure": 3.0414946676917234,
+            "market_trend": 0
+        }
     }
 ]
