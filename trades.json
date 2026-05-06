@@ -662,5 +662,12 @@
         "sl": 4156.3,
         "status": "OPEN",
         "date": "2026-04-23"
+    },
+    {
+        "symbol": "POWERGRID",
+        "entry": 316.0,
+        "sl": 304.0,
+        "status": "OPEN",
+        "date": "2026-05-06"
     }
 ]
