@@ -669,5 +669,19 @@
         "sl": 304.0,
         "status": "OPEN",
         "date": "2026-05-06"
+    },
+    {
+        "symbol": "BAJAJ-AUTO",
+        "entry": 10605.0,
+        "sl": 10134.5,
+        "status": "OPEN",
+        "date": "2026-05-07"
+    },
+    {
+        "symbol": "CGPOWER",
+        "entry": 859.1,
+        "sl": 811.3,
+        "status": "OPEN",
+        "date": "2026-05-07"
     }
 ]
