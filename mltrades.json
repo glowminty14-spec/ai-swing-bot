@@ -1690,5 +1690,41 @@
             "buy_pressure": 0.9579270786921597,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "ASIANPAINT",
+        "entry": 2599.9,
+        "target": 2848.8,
+        "sl": 2475.4,
+        "date": "2026-05-08",
+        "status": "OPEN",
+        "features": {
+            "rsi": 69.58661858795101,
+            "adx": 27.515043777490764,
+            "ema20_dist": 0.055640425762391726,
+            "ema200_dist": 0.0417096689917259,
+            "volume_ratio": 2.053860822667189,
+            "atr_pct": 0.023934110216710137,
+            "buy_pressure": 1.4005174683288564,
+            "market_trend": 0
+        }
+    },
+    {
+        "symbol": "GODFRYPHLP",
+        "entry": 2424.8,
+        "target": 2773.9,
+        "sl": 2250.2,
+        "date": "2026-05-08",
+        "status": "OPEN",
+        "features": {
+            "rsi": 70.05075269033192,
+            "adx": 27.51896338805305,
+            "ema20_dist": 0.0915797885951803,
+            "ema200_dist": 0.0037894123929245655,
+            "volume_ratio": 1.5960805833072462,
+            "atr_pct": 0.03599656039871247,
+            "buy_pressure": 3.791908706530488,
+            "market_trend": 0
+        }
     }
 ]

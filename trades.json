@@ -683,5 +683,19 @@
         "sl": 811.3,
         "status": "OPEN",
         "date": "2026-05-07"
+    },
+    {
+        "symbol": "HINDALCO",
+        "entry": 1044.4,
+        "sl": 997.9,
+        "status": "OPEN",
+        "date": "2026-05-08"
+    },
+    {
+        "symbol": "TATAPOWER",
+        "entry": 436.0,
+        "sl": 417.6,
+        "status": "OPEN",
+        "date": "2026-05-08"
     }
 ]
