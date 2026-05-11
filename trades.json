@@ -697,5 +697,19 @@
         "sl": 417.6,
         "status": "OPEN",
         "date": "2026-05-08"
+    },
+    {
+        "symbol": "MCX",
+        "entry": 3187.9,
+        "sl": 3014.5,
+        "status": "OPEN",
+        "date": "2026-05-11"
+    },
+    {
+        "symbol": "TATACONSUM",
+        "entry": 1271.0,
+        "sl": 1212.4,
+        "status": "OPEN",
+        "date": "2026-05-11"
     }
 ]
