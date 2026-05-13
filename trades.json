@@ -711,5 +711,19 @@
         "sl": 1212.4,
         "status": "OPEN",
         "date": "2026-05-11"
+    },
+    {
+        "symbol": "SAIL",
+        "entry": 201.3,
+        "sl": 189.4,
+        "status": "OPEN",
+        "date": "2026-05-13"
+    },
+    {
+        "symbol": "IDEA",
+        "entry": 12.8,
+        "sl": 11.9,
+        "status": "OPEN",
+        "date": "2026-05-13"
     }
 ]

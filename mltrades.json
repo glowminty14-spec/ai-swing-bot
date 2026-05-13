@@ -1780,5 +1780,59 @@
             "buy_pressure": 2.1026587412600155,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "HINDZINC",
+        "entry": 667.1,
+        "target": 745.1,
+        "sl": 628.1,
+        "date": "2026-05-13",
+        "status": "OPEN",
+        "features": {
+            "rsi": 73.96049665703909,
+            "adx": 25.20014186397564,
+            "ema20_dist": 0.08623179245186977,
+            "ema200_dist": 0.1868633783319518,
+            "volume_ratio": 1.761540534860514,
+            "atr_pct": 0.029221356569870908,
+            "buy_pressure": 1.1681043162619087,
+            "market_trend": 0
+        }
+    },
+    {
+        "symbol": "SOLARINDS",
+        "entry": 15787.0,
+        "target": 17595.0,
+        "sl": 14883.0,
+        "date": "2026-05-13",
+        "status": "OPEN",
+        "features": {
+            "rsi": 60.23692591302825,
+            "adx": 37.49614704658669,
+            "ema20_dist": 0.02605499633054013,
+            "ema200_dist": 0.12767011037377854,
+            "volume_ratio": 0.6847895368153736,
+            "atr_pct": 0.02863158834174132,
+            "buy_pressure": 2.1200312643253603,
+            "market_trend": 0
+        }
+    },
+    {
+        "symbol": "ZYDUSLIFE",
+        "entry": 939.2,
+        "target": 1029.2,
+        "sl": 894.3,
+        "date": "2026-05-13",
+        "status": "OPEN",
+        "features": {
+            "rsi": 55.77195928040539,
+            "adx": 22.519657443508763,
+            "ema20_dist": 0.01520661636187153,
+            "ema200_dist": 0.009429702855485436,
+            "volume_ratio": 0.9291016030559676,
+            "atr_pct": 0.023951343863390345,
+            "buy_pressure": 2.09321491631762,
+            "market_trend": 0
+        }
     }
 ]
