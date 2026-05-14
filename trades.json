@@ -725,5 +725,19 @@
         "sl": 11.9,
         "status": "OPEN",
         "date": "2026-05-13"
+    },
+    {
+        "symbol": "ADANIENT",
+        "entry": 2712.9,
+        "sl": 2553.7,
+        "status": "OPEN",
+        "date": "2026-05-14"
+    },
+    {
+        "symbol": "OIL",
+        "entry": 517.5,
+        "sl": 487.6,
+        "status": "OPEN",
+        "date": "2026-05-14"
     }
 ]
