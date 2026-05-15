@@ -739,5 +739,12 @@
         "sl": 487.6,
         "status": "OPEN",
         "date": "2026-05-14"
+    },
+    {
+        "symbol": "GLENMARK",
+        "entry": 2325.9,
+        "sl": 2203.9,
+        "status": "OPEN",
+        "date": "2026-05-15"
     }
 ]
