@@ -746,5 +746,19 @@
         "sl": 2203.9,
         "status": "OPEN",
         "date": "2026-05-15"
+    },
+    {
+        "symbol": "SOLARINDS",
+        "entry": 18019.0,
+        "sl": 17018.7,
+        "status": "OPEN",
+        "date": "2026-05-18"
+    },
+    {
+        "symbol": "CUMMINSIND",
+        "entry": 5298.5,
+        "sl": 5057.5,
+        "status": "OPEN",
+        "date": "2026-05-18"
     }
 ]
