@@ -760,5 +760,19 @@
         "sl": 5057.5,
         "status": "OPEN",
         "date": "2026-05-18"
+    },
+    {
+        "symbol": "APOLLOHOSP",
+        "entry": 8308.5,
+        "sl": 8008.2,
+        "status": "OPEN",
+        "date": "2026-05-21"
+    },
+    {
+        "symbol": "GRASIM",
+        "entry": 3154.5,
+        "sl": 3018.2,
+        "status": "OPEN",
+        "date": "2026-05-21"
     }
 ]
