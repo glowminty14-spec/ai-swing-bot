@@ -788,5 +788,12 @@
         "sl": 794.1,
         "status": "OPEN",
         "date": "2026-05-22"
+    },
+    {
+        "symbol": "TATACOMM",
+        "entry": 2009.1,
+        "sl": 1871.9,
+        "status": "OPEN",
+        "date": "2026-05-26"
     }
 ]

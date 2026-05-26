@@ -1906,5 +1906,23 @@
             "buy_pressure": 6.151101417441209,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "TATAINVEST",
+        "entry": 694.6,
+        "target": 779.8,
+        "sl": 652.0,
+        "date": "2026-05-26",
+        "status": "OPEN",
+        "features": {
+            "rsi": 55.32668039700382,
+            "adx": 20.90477302295554,
+            "ema20_dist": 0.0167383426621439,
+            "ema200_dist": 0.014691235530622149,
+            "volume_ratio": 3.6372814985171167,
+            "atr_pct": 0.030674240886274802,
+            "buy_pressure": 2.370343853283419,
+            "market_trend": 0
+        }
     }
 ]
