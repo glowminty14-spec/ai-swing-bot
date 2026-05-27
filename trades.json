@@ -795,5 +795,19 @@
         "sl": 1871.9,
         "status": "OPEN",
         "date": "2026-05-26"
+    },
+    {
+        "symbol": "ATGL",
+        "entry": 808.5,
+        "sl": 743.7,
+        "status": "OPEN",
+        "date": "2026-05-27"
+    },
+    {
+        "symbol": "MOTHERSON",
+        "entry": 142.4,
+        "sl": 133.4,
+        "status": "OPEN",
+        "date": "2026-05-27"
     }
 ]

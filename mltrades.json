@@ -1924,5 +1924,41 @@
             "buy_pressure": 2.370343853283419,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "EXIDEIND",
+        "entry": 394.1,
+        "target": 444.6,
+        "sl": 368.9,
+        "date": "2026-05-27",
+        "status": "OPEN",
+        "features": {
+            "rsi": 74.13592703594708,
+            "adx": 21.640608996029698,
+            "ema20_dist": 0.10724946342079715,
+            "ema200_dist": 0.09499705445293086,
+            "volume_ratio": 5.171945044609741,
+            "atr_pct": 0.032020118700414005,
+            "buy_pressure": 3.0596302973590217,
+            "market_trend": 0
+        }
+    },
+    {
+        "symbol": "INDUSINDBK",
+        "entry": 932.3,
+        "target": 1021.5,
+        "sl": 887.7,
+        "date": "2026-05-27",
+        "status": "OPEN",
+        "features": {
+            "rsi": 61.26314754294903,
+            "adx": 21.218524744194934,
+            "ema20_dist": 0.02819935568886111,
+            "ema200_dist": 0.059361084331393414,
+            "volume_ratio": 0.6185141343146073,
+            "atr_pct": 0.023918443220901104,
+            "buy_pressure": 2.457033153598266,
+            "market_trend": 0
+        }
     }
 ]
