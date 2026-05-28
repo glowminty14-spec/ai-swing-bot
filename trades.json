@@ -809,5 +809,12 @@
         "sl": 133.4,
         "status": "OPEN",
         "date": "2026-05-27"
+    },
+    {
+        "symbol": "SUNPHARMA",
+        "entry": 1844.3,
+        "sl": 1771.1,
+        "status": "OPEN",
+        "date": "2026-05-28"
     }
 ]
