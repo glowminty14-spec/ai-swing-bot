@@ -816,5 +816,19 @@
         "sl": 1771.1,
         "status": "OPEN",
         "date": "2026-05-28"
+    },
+    {
+        "symbol": "ADANIPORTS",
+        "entry": 1790.9,
+        "sl": 1713.4,
+        "status": "OPEN",
+        "date": "2026-06-04"
+    },
+    {
+        "symbol": "BSE",
+        "entry": 4033.4,
+        "sl": 3798.2,
+        "status": "OPEN",
+        "date": "2026-06-04"
     }
 ]
