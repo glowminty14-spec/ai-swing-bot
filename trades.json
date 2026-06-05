@@ -830,5 +830,19 @@
         "sl": 3798.2,
         "status": "OPEN",
         "date": "2026-06-04"
+    },
+    {
+        "symbol": "JSWENERGY",
+        "entry": 584.2,
+        "sl": 551.2,
+        "status": "OPEN",
+        "date": "2026-06-05"
+    },
+    {
+        "symbol": "OFSS",
+        "entry": 9936.5,
+        "sl": 9351.2,
+        "status": "OPEN",
+        "date": "2026-06-05"
     }
 ]
