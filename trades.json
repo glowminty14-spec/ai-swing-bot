@@ -844,5 +844,12 @@
         "sl": 9351.2,
         "status": "OPEN",
         "date": "2026-06-05"
+    },
+    {
+        "symbol": "ADANIGREEN",
+        "entry": 1485.7,
+        "sl": 1390.7,
+        "status": "OPEN",
+        "date": "2026-06-12"
     }
 ]

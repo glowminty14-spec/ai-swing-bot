@@ -1978,5 +1978,23 @@
             "buy_pressure": 2.7496092825915484,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "IDFCFIRSTB",
+        "entry": 76.5,
+        "target": 84.0,
+        "sl": 72.7,
+        "date": "2026-06-12",
+        "status": "OPEN",
+        "features": {
+            "rsi": 73.97852108723552,
+            "adx": 25.209629450852905,
+            "ema20_dist": 0.06315712582324602,
+            "ema200_dist": 0.051746344836694075,
+            "volume_ratio": 1.7312287967708953,
+            "atr_pct": 0.024610549055479655,
+            "buy_pressure": 3.2574662377458106,
+            "market_trend": 0
+        }
     }
 ]
