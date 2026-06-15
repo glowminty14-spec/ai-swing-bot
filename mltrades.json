@@ -1996,5 +1996,23 @@
             "buy_pressure": 3.2574662377458106,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "PIDILITIND",
+        "entry": 1571.0,
+        "target": 1702.6,
+        "sl": 1505.2,
+        "date": "2026-06-15",
+        "status": "OPEN",
+        "features": {
+            "rsi": 73.49437883213625,
+            "adx": 21.62285698515438,
+            "ema20_dist": 0.05522283537980705,
+            "ema200_dist": 0.07517666912004314,
+            "volume_ratio": 2.0618385931691052,
+            "atr_pct": 0.02093455133848473,
+            "buy_pressure": 14.41933400947688,
+            "market_trend": 0
+        }
     }
 ]
