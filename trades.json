@@ -851,5 +851,19 @@
         "sl": 1390.7,
         "status": "OPEN",
         "date": "2026-06-12"
+    },
+    {
+        "symbol": "LAURUSLABS",
+        "entry": 1376.4,
+        "sl": 1311.6,
+        "status": "OPEN",
+        "date": "2026-06-16"
+    },
+    {
+        "symbol": "ZYDUSLIFE",
+        "entry": 1078.7,
+        "sl": 1033.2,
+        "status": "OPEN",
+        "date": "2026-06-16"
     }
 ]
