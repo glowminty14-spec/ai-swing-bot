@@ -865,5 +865,12 @@
         "sl": 1033.2,
         "status": "OPEN",
         "date": "2026-06-16"
+    },
+    {
+        "symbol": "YESBANK",
+        "entry": 25.1,
+        "sl": 23.7,
+        "status": "OPEN",
+        "date": "2026-06-17"
     }
 ]
