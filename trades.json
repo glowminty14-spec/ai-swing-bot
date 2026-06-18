@@ -872,5 +872,12 @@
         "sl": 23.7,
         "status": "OPEN",
         "date": "2026-06-17"
+    },
+    {
+        "symbol": "RADICO",
+        "entry": 3690.0,
+        "sl": 3524.9,
+        "status": "OPEN",
+        "date": "2026-06-18"
     }
 ]
