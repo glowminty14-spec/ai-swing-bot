@@ -2140,5 +2140,23 @@
             "buy_pressure": 8.06685079059169,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "MAXHEALTH",
+        "entry": 1123.3,
+        "target": 1241.3,
+        "sl": 1064.4,
+        "date": "2026-06-25",
+        "status": "OPEN",
+        "features": {
+            "rsi": 72.33074620793533,
+            "adx": 24.312344964893445,
+            "ema20_dist": 0.06834410025146664,
+            "ema200_dist": 0.06472652786375564,
+            "volume_ratio": 1.545056066675277,
+            "atr_pct": 0.026243778924268803,
+            "buy_pressure": 2.4955728528153807,
+            "market_trend": 0
+        }
     }
 ]
