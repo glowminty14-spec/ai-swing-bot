@@ -879,5 +879,19 @@
         "sl": 3524.9,
         "status": "OPEN",
         "date": "2026-06-18"
+    },
+    {
+        "symbol": "INDUSINDBK",
+        "entry": 1009.8,
+        "sl": 966.2,
+        "status": "OPEN",
+        "date": "2026-07-06"
+    },
+    {
+        "symbol": "PHOENIXLTD",
+        "entry": 2105.8,
+        "sl": 2009.4,
+        "status": "OPEN",
+        "date": "2026-07-06"
     }
 ]

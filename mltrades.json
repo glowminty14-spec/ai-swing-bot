@@ -2374,5 +2374,23 @@
             "buy_pressure": 1.6316490239107353,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "CHOLAFIN",
+        "entry": 1850.5,
+        "target": 2027.0,
+        "sl": 1762.3,
+        "date": "2026-07-06",
+        "status": "OPEN",
+        "features": {
+            "rsi": 73.9139551817895,
+            "adx": 35.87833236528602,
+            "ema20_dist": 0.0691588584757815,
+            "ema200_dist": 0.13239092217998139,
+            "volume_ratio": 1.5747186236588513,
+            "atr_pct": 0.02384473253834609,
+            "buy_pressure": 0.8790002916378702,
+            "market_trend": 0
+        }
     }
 ]
