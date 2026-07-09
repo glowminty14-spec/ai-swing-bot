@@ -893,5 +893,19 @@
         "sl": 2009.4,
         "status": "OPEN",
         "date": "2026-07-06"
+    },
+    {
+        "symbol": "GMRAIRPORT",
+        "entry": 111.8,
+        "sl": 106.8,
+        "status": "OPEN",
+        "date": "2026-07-09"
+    },
+    {
+        "symbol": "ABCAPITAL",
+        "entry": 397.4,
+        "sl": 377.5,
+        "status": "OPEN",
+        "date": "2026-07-09"
     }
 ]

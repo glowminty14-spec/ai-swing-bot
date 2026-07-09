@@ -2428,5 +2428,23 @@
             "buy_pressure": 2.9538528339784627,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "INDHOTEL",
+        "entry": 731.5,
+        "target": 791.7,
+        "sl": 701.3,
+        "date": "2026-07-09",
+        "status": "OPEN",
+        "features": {
+            "rsi": 61.486871432481024,
+            "adx": 22.63295162770807,
+            "ema20_dist": 0.02425354504020472,
+            "ema200_dist": 0.06166200432969555,
+            "volume_ratio": 0.5231564291938432,
+            "atr_pct": 0.020584839508947704,
+            "buy_pressure": 2.229962945164713,
+            "market_trend": 0
+        }
     }
 ]
