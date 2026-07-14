@@ -921,5 +921,19 @@
         "sl": 1544.6,
         "status": "OPEN",
         "date": "2026-07-10"
+    },
+    {
+        "symbol": "DIVISLAB",
+        "entry": 7188.5,
+        "sl": 6912.2,
+        "status": "OPEN",
+        "date": "2026-07-14"
+    },
+    {
+        "symbol": "FEDERALBNK",
+        "entry": 327.5,
+        "sl": 316.0,
+        "status": "OPEN",
+        "date": "2026-07-14"
     }
 ]
