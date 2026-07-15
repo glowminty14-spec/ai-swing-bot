@@ -2482,5 +2482,23 @@
             "buy_pressure": 2.3419497222292684,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "KALYANKJIL",
+        "entry": 548.1,
+        "target": 635.8,
+        "sl": 504.3,
+        "date": "2026-07-15",
+        "status": "OPEN",
+        "features": {
+            "rsi": 82.36481330736433,
+            "adx": 24.49522827085575,
+            "ema20_dist": 0.2221360955926876,
+            "ema200_dist": 0.21206293675802732,
+            "volume_ratio": 1.8879245666046447,
+            "atr_pct": 0.04478312337006806,
+            "buy_pressure": 19.049011024212156,
+            "market_trend": 0
+        }
     }
 ]
