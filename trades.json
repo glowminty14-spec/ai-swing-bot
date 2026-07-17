@@ -935,5 +935,12 @@
         "sl": 316.0,
         "status": "OPEN",
         "date": "2026-07-14"
+    },
+    {
+        "symbol": "EXIDEIND",
+        "entry": 435.2,
+        "sl": 415.4,
+        "status": "OPEN",
+        "date": "2026-07-17"
     }
 ]
