@@ -942,5 +942,12 @@
         "sl": 415.4,
         "status": "OPEN",
         "date": "2026-07-17"
+    },
+    {
+        "symbol": "OBEROIRLTY",
+        "entry": 1882.7,
+        "sl": 1784.4,
+        "status": "OPEN",
+        "date": "2026-07-20"
     }
 ]
