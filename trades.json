@@ -949,5 +949,12 @@
         "sl": 1784.4,
         "status": "OPEN",
         "date": "2026-07-20"
+    },
+    {
+        "symbol": "TVSMOTOR",
+        "entry": 4208.4,
+        "sl": 4023.4,
+        "status": "OPEN",
+        "date": "2026-07-30"
     }
 ]

@@ -2626,5 +2626,41 @@
             "buy_pressure": 3.241224542309754,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "BHARTIARTL",
+        "entry": 1956.8,
+        "target": 2079.8,
+        "sl": 1895.3,
+        "date": "2026-07-30",
+        "status": "OPEN",
+        "features": {
+            "rsi": 64.85173028993565,
+            "adx": 23.164788529518294,
+            "ema20_dist": 0.027459961203983866,
+            "ema200_dist": 0.04192165449831932,
+            "volume_ratio": 0.902486329014938,
+            "atr_pct": 0.015709375741318143,
+            "buy_pressure": 2.788367610912022,
+            "market_trend": 0
+        }
+    },
+    {
+        "symbol": "HEROMOTOCO",
+        "entry": 5325.0,
+        "target": 5769.2,
+        "sl": 5102.9,
+        "date": "2026-07-30",
+        "status": "OPEN",
+        "features": {
+            "rsi": 72.50641829881629,
+            "adx": 22.574464783452008,
+            "ema20_dist": 0.06207374083476278,
+            "ema200_dist": 0.052561152291093496,
+            "volume_ratio": 1.9888423719285406,
+            "atr_pct": 0.020856332498556476,
+            "buy_pressure": 2.4442047436800975,
+            "market_trend": 0
+        }
     }
 ]
