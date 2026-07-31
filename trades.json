@@ -956,5 +956,12 @@
         "sl": 4023.4,
         "status": "OPEN",
         "date": "2026-07-30"
+    },
+    {
+        "symbol": "BAJFINANCE",
+        "entry": 1141.2,
+        "sl": 1087.9,
+        "status": "OPEN",
+        "date": "2026-07-31"
     }
 ]
