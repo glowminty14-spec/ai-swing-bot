@@ -963,5 +963,12 @@
         "sl": 1087.9,
         "status": "OPEN",
         "date": "2026-07-31"
+    },
+    {
+        "symbol": "PAYTM",
+        "entry": 1410.0,
+        "sl": 1326.7,
+        "status": "OPEN",
+        "date": "2026-08-03"
     }
 ]
