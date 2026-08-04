@@ -970,5 +970,12 @@
         "sl": 1326.7,
         "status": "OPEN",
         "date": "2026-08-03"
+    },
+    {
+        "symbol": "SIEMENS",
+        "entry": 4000.5,
+        "sl": 3803.5,
+        "status": "OPEN",
+        "date": "2026-08-04"
     }
 ]
