@@ -977,5 +977,12 @@
         "sl": 3803.5,
         "status": "OPEN",
         "date": "2026-08-04"
+    },
+    {
+        "symbol": "BOSCHLTD",
+        "entry": 42920.0,
+        "sl": 41145.6,
+        "status": "OPEN",
+        "date": "2026-08-05"
     }
 ]
