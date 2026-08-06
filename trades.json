@@ -984,5 +984,12 @@
         "sl": 41145.6,
         "status": "OPEN",
         "date": "2026-08-05"
+    },
+    {
+        "symbol": "NYKAA",
+        "entry": 331.0,
+        "sl": 315.7,
+        "status": "OPEN",
+        "date": "2026-08-06"
     }
 ]
