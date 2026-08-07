@@ -2752,5 +2752,41 @@
             "buy_pressure": 5.2321335992238405,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "AUROPHARMA",
+        "entry": 1658.0,
+        "target": 1834.5,
+        "sl": 1569.7,
+        "date": "2026-08-07",
+        "status": "OPEN",
+        "features": {
+            "rsi": 65.2348128637656,
+            "adx": 27.337980705199982,
+            "ema20_dist": 0.05166265576416928,
+            "ema200_dist": 0.1714039811409468,
+            "volume_ratio": 1.926120529358088,
+            "atr_pct": 0.026614803933010217,
+            "buy_pressure": 1.974973415319726,
+            "market_trend": 0
+        }
+    },
+    {
+        "symbol": "BAJAJHLDNG",
+        "entry": 11263.0,
+        "target": 12256.9,
+        "sl": 10766.0,
+        "date": "2026-08-07",
+        "status": "OPEN",
+        "features": {
+            "rsi": 61.42767935044049,
+            "adx": 25.144890179276736,
+            "ema20_dist": 0.027288644942540085,
+            "ema200_dist": 0.0433553783167764,
+            "volume_ratio": 0.48281540711992876,
+            "atr_pct": 0.0220617655775931,
+            "buy_pressure": 2.2076692865340752,
+            "market_trend": 0
+        }
     }
 ]
