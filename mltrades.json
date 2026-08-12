@@ -2788,5 +2788,23 @@
             "buy_pressure": 2.2076692865340752,
             "market_trend": 0
         }
+    },
+    {
+        "symbol": "PERSISTENT",
+        "entry": 5474.0,
+        "target": 6127.3,
+        "sl": 5147.4,
+        "date": "2026-08-12",
+        "status": "OPEN",
+        "features": {
+            "rsi": 60.399467003873006,
+            "adx": 20.50376450943222,
+            "ema20_dist": 0.02193163828502767,
+            "ema200_dist": 0.03725638359213991,
+            "volume_ratio": 0.5677687301668095,
+            "atr_pct": 0.029835276500891284,
+            "buy_pressure": 2.6378193047609635,
+            "market_trend": 0
+        }
     }
 ]

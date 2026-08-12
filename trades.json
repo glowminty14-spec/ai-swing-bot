@@ -991,5 +991,12 @@
         "sl": 315.7,
         "status": "OPEN",
         "date": "2026-08-06"
+    },
+    {
+        "symbol": "HAL",
+        "entry": 4995.0,
+        "sl": 4798.2,
+        "status": "OPEN",
+        "date": "2026-08-12"
     }
 ]
