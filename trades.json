@@ -998,5 +998,12 @@
         "sl": 4798.2,
         "status": "OPEN",
         "date": "2026-08-12"
+    },
+    {
+        "symbol": "UNITDSPR",
+        "entry": 1538.5,
+        "sl": 1488.4,
+        "status": "OPEN",
+        "date": "2026-08-26"
     }
 ]
